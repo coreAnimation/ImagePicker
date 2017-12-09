@@ -1,3 +1,3 @@
-# ImagePicker
+# JRImagePicker
 Create 
-ImagePicker
+JRImagePicker
