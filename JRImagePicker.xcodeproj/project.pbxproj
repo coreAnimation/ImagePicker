@@ -58,17 +58,49 @@
 		3054FB211FDBA06C00FC110A /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				3054FB221FDBA06C00FC110A /* AppDelegate.h */,
-				3054FB231FDBA06C00FC110A /* AppDelegate.m */,
-				3054FB251FDBA06C00FC110A /* ViewController.h */,
-				3054FB261FDBA06C00FC110A /* ViewController.m */,
+				3054FB391FDBA0F000FC110A /* Delegate */,
+				3054FB3B1FDBA10600FC110A /* MainController */,
+				3054FB3A1FDBA0FD00FC110A /* JRImagePicker */,
+				3054FB301FDBA06C00FC110A /* Info.plist */,
+				3054FB381FDBA0DF00FC110A /* Support File */,
+			);
+			path = JRImagePicker;
+			sourceTree = "<group>";
+		};
+		3054FB381FDBA0DF00FC110A /* Support File */ = {
+			isa = PBXGroup;
+			children = (
 				3054FB281FDBA06C00FC110A /* Main.storyboard */,
 				3054FB2B1FDBA06C00FC110A /* Assets.xcassets */,
 				3054FB2D1FDBA06C00FC110A /* LaunchScreen.storyboard */,
-				3054FB301FDBA06C00FC110A /* Info.plist */,
 				3054FB311FDBA06C00FC110A /* main.m */,
 			);
+			path = "Support File";
+			sourceTree = "<group>";
+		};
+		3054FB391FDBA0F000FC110A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3054FB221FDBA06C00FC110A /* AppDelegate.h */,
+				3054FB231FDBA06C00FC110A /* AppDelegate.m */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		3054FB3A1FDBA0FD00FC110A /* JRImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+			);
 			path = JRImagePicker;
+			sourceTree = "<group>";
+		};
+		3054FB3B1FDBA10600FC110A /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				3054FB251FDBA06C00FC110A /* ViewController.h */,
+				3054FB261FDBA06C00FC110A /* ViewController.m */,
+			);
+			path = MainController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
