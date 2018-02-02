@@ -7,6 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "JRImagePickerController.h"
+#import <Photos/Photos.h>
+#import "JRAlbumManager.h"
 
 @interface ViewController ()
 
@@ -21,9 +24,22 @@
 }
 
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+
+	JRAlbumManager *manager = [JRAlbumManager sharedAlbumManager];
+	[manager fetchAlbumResource];
+	NSLog(@"== %@", manager.albumList);
+	
+	
+	
+	
+//	JRImagePickerController *vc = [JRImagePickerController new];
+//
+////	UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+////	[self presentViewController:nav animated:YES completion:nil];
+//
+//	[self.navigationController pushViewController:vc animated:YES];
+	
 }
 
 

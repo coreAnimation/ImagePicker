@@ -13,6 +13,10 @@
 		3054FB2C1FDBA06C00FC110A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3054FB2B1FDBA06C00FC110A /* Assets.xcassets */; };
 		3054FB2F1FDBA06C00FC110A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3054FB2D1FDBA06C00FC110A /* LaunchScreen.storyboard */; };
 		3054FB321FDBA06C00FC110A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB311FDBA06C00FC110A /* main.m */; };
+		3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AB20245B500087F377 /* JRImagePickerController.m */; };
+		3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AE20245BD00087F377 /* JRTestViewController.m */; };
+		3498B3B620246FE10087F377 /* JRAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B520246FE10087F377 /* JRAlbum.m */; };
+		3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B8202470640087F377 /* JRAlbumManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,17 @@
 		3054FB2E1FDBA06C00FC110A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3054FB301FDBA06C00FC110A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3054FB311FDBA06C00FC110A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3498B3AA20245B500087F377 /* JRImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRImagePickerController.h; sourceTree = "<group>"; };
+		3498B3AB20245B500087F377 /* JRImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRImagePickerController.m; sourceTree = "<group>"; };
+		3498B3AD20245BD00087F377 /* JRTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRTestViewController.h; sourceTree = "<group>"; };
+		3498B3AE20245BD00087F377 /* JRTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRTestViewController.m; sourceTree = "<group>"; };
+		3498B3B1202460920087F377 /* jr_PHAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jr_PHAsset.h; sourceTree = "<group>"; };
+		3498B3B220246C650087F377 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		3498B3B320246C650087F377 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		3498B3B420246FE10087F377 /* JRAlbum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAlbum.h; sourceTree = "<group>"; };
+		3498B3B520246FE10087F377 /* JRAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbum.m; sourceTree = "<group>"; };
+		3498B3B7202470640087F377 /* JRAlbumManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAlbumManager.h; sourceTree = "<group>"; };
+		3498B3B8202470640087F377 /* JRAlbumManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbumManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,9 +73,10 @@
 		3054FB211FDBA06C00FC110A /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				3498B3B0202460830087F377 /* document */,
+				3498B3A920245B4A0087F377 /* JRImagePicker */,
 				3054FB391FDBA0F000FC110A /* Delegate */,
 				3054FB3B1FDBA10600FC110A /* MainController */,
-				3054FB3A1FDBA0FD00FC110A /* JRImagePicker */,
 				3054FB301FDBA06C00FC110A /* Info.plist */,
 				3054FB381FDBA0DF00FC110A /* Support File */,
 			);
@@ -87,13 +103,6 @@
 			path = Delegate;
 			sourceTree = "<group>";
 		};
-		3054FB3A1FDBA0FD00FC110A /* JRImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = JRImagePicker;
-			sourceTree = "<group>";
-		};
 		3054FB3B1FDBA10600FC110A /* MainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +110,29 @@
 				3054FB261FDBA06C00FC110A /* ViewController.m */,
 			);
 			path = MainController;
+			sourceTree = "<group>";
+		};
+		3498B3A920245B4A0087F377 /* JRImagePicker */ = {
+			isa = PBXGroup;
+			children = (
+				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
+				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
+				3498B3AD20245BD00087F377 /* JRTestViewController.h */,
+				3498B3AE20245BD00087F377 /* JRTestViewController.m */,
+				3498B3B420246FE10087F377 /* JRAlbum.h */,
+				3498B3B520246FE10087F377 /* JRAlbum.m */,
+				3498B3B7202470640087F377 /* JRAlbumManager.h */,
+				3498B3B8202470640087F377 /* JRAlbumManager.m */,
+			);
+			path = JRImagePicker;
+			sourceTree = "<group>";
+		};
+		3498B3B0202460830087F377 /* document */ = {
+			isa = PBXGroup;
+			children = (
+				3498B3B1202460920087F377 /* jr_PHAsset.h */,
+			);
+			path = document;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +175,6 @@
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = 3054FB161FDBA06C00FC110A;
@@ -174,9 +205,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */,
 				3054FB271FDBA06C00FC110A /* ViewController.m in Sources */,
+				3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */,
+				3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */,
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
+				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +222,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3054FB291FDBA06C00FC110A /* Base */,
+				3498B3B220246C650087F377 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -195,6 +231,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				3054FB2E1FDBA06C00FC110A /* Base */,
+				3498B3B320246C650087F377 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -206,6 +243,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -261,6 +299,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
