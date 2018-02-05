@@ -18,6 +18,7 @@
 		3498B3B620246FE10087F377 /* JRAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B520246FE10087F377 /* JRAlbum.m */; };
 		3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B8202470640087F377 /* JRAlbumManager.m */; };
 		34B82FC32028400400598767 /* JRImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC22028400400598767 /* JRImageCell.m */; };
+		34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		34B82FC0202839F900598767 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		34B82FC12028400400598767 /* JRImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageCell.h; sourceTree = "<group>"; };
 		34B82FC22028400400598767 /* JRImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageCell.m; sourceTree = "<group>"; };
+		34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHImageManager+JRExtension.h"; sourceTree = "<group>"; };
+		34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHImageManager+JRExtension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +133,8 @@
 				34B82FC0202839F900598767 /* Header.h */,
 				34B82FC12028400400598767 /* JRImageCell.h */,
 				34B82FC22028400400598767 /* JRImageCell.m */,
+				34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */,
+				34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */,
 			);
 			path = JRImagePicker;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */,
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
+				34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */,
 				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,
 				34B82FC32028400400598767 /* JRImageCell.m in Sources */,
 			);

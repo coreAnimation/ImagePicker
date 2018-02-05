@@ -9,7 +9,7 @@
 #import "JRAlbumManager.h"
 #import <Photos/Photos.h>
 #import "JRAlbum.h"
-
+#import "PHImageManager+JRExtension.h"
 
 @implementation JRAlbumManager
 
@@ -63,15 +63,12 @@
 		PHAsset *lastAsset = fetchResult.lastObject;
 
 		if (lastAsset) {
-			[[PHImageManager defaultManager] requestImageForAsset:lastAsset
-													   targetSize:CGSizeMake(100, 100)
-													  contentMode:PHImageContentModeAspectFill
-														  options:option
-													resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-														if (result) {
-															album.image = result;
-														}
-													}];
+			
+			[PHImageManager jr_imageForAsset:lastAsset
+								  targetSize:CGSizeMake(100, 100)
+								  accomplish:^(UIImage *result, NSDictionary *info) {
+									  if (result) { album.image = result; }
+								  }];
 		}
 	}
 

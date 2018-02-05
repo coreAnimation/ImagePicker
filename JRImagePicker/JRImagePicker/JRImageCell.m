@@ -9,6 +9,7 @@
 #import "JRImageCell.h"
 #import <Photos/Photos.h>
 #import "Header.h"
+#import "PHImageManager+JRExtension.h"
 
 @interface JRImageCell ()
 
@@ -46,37 +47,41 @@
 	_asset = asset;
 	
 	CGFloat sizeW = (Screen_w - Margin_w * 5) / (CGFloat)4 * [UIScreen mainScreen].scale;
+	CGFloat aspectRatio = asset.pixelHeight / (CGFloat)asset.pixelWidth;
 	
 	if (asset) {
 		
 		CGSize imageSize = CGSizeMake(sizeW, sizeW);
 		/// 宽图片
 		if (asset.pixelWidth > asset.pixelHeight) {
-			CGFloat aspectRatio = asset.pixelHeight / (CGFloat)asset.pixelWidth;
 			CGFloat w = sizeW / aspectRatio;
 			imageSize = CGSizeMake(w, sizeW);
-			NSLog(@"--- %@ -- %f", NSStringFromCGSize(imageSize), aspectRatio);
 		}
 		/// 高图片
 		else {
-			CGFloat aspectRatio = asset.pixelHeight / (CGFloat)asset.pixelWidth;
 			CGFloat h = sizeW * aspectRatio;
 			imageSize = CGSizeMake(sizeW, h);
-			NSLog(@"==== %@ -- %f", NSStringFromCGSize(imageSize), aspectRatio);
 		}
 
-		PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-		option.resizeMode = PHImageRequestOptionsResizeModeFast;
+		/// 获取图片
+		[PHImageManager jr_imageForAsset:asset
+							  targetSize:imageSize
+							  accomplish:^(UIImage *result, NSDictionary *info) {
+								  if (result) { self.imgView.image = result; }
+		}];
 		
-		[[PHImageManager defaultManager] requestImageForAsset:asset
-												   targetSize:imageSize//CGSizeMake(200, 200)
-												  contentMode:PHImageContentModeAspectFill
-													  options:option
-												resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-													if (result) {
-														self.imgView.image = result;
-													}
-												}];
+//		PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+//		option.resizeMode = PHImageRequestOptionsResizeModeFast;
+//
+//		[[PHImageManager defaultManager] requestImageForAsset:asset
+//												   targetSize:imageSize//CGSizeMake(200, 200)
+//												  contentMode:PHImageContentModeAspectFill
+//													  options:option
+//												resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+//													if (result) {
+//														self.imgView.image = result;
+//													}
+//												}];
 	}
 	
 }
