@@ -48,12 +48,33 @@
 		NSString *albumName = collection.localizedTitle;
 		// 相册图片数量
 		NSInteger albumNumb = fetchResult.count;
-		JRAlbum *album = [JRAlbum new];
-		album.name = albumName;
-		album.count = albumNumb;
+		
+		/// 相册模型
+		JRAlbum *album 		= [JRAlbum new];
+		album.name 			= albumName;
+		album.count 		= albumNumb;
+		album.fetchResult 	= fetchResult;
 		[tmpAlbum addObject:album];
+
+		/// 获取相册封面
+		PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+		option.resizeMode = PHImageRequestOptionsResizeModeFast;
+
+		PHAsset *lastAsset = fetchResult.lastObject;
+
+		if (lastAsset) {
+			[[PHImageManager defaultManager] requestImageForAsset:lastAsset
+													   targetSize:CGSizeMake(100, 100)
+													  contentMode:PHImageContentModeAspectFill
+														  options:option
+													resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+														if (result) {
+															album.image = result;
+														}
+													}];
+		}
 	}
-	
+
 	/// 保存相册列表
 	self.albumList = tmpAlbum.copy;
 }

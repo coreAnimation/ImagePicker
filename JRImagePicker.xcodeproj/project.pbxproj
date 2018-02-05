@@ -17,6 +17,7 @@
 		3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AE20245BD00087F377 /* JRTestViewController.m */; };
 		3498B3B620246FE10087F377 /* JRAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B520246FE10087F377 /* JRAlbum.m */; };
 		3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B8202470640087F377 /* JRAlbumManager.m */; };
+		34B82FC32028400400598767 /* JRImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC22028400400598767 /* JRImageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,9 @@
 		3498B3B520246FE10087F377 /* JRAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbum.m; sourceTree = "<group>"; };
 		3498B3B7202470640087F377 /* JRAlbumManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAlbumManager.h; sourceTree = "<group>"; };
 		3498B3B8202470640087F377 /* JRAlbumManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbumManager.m; sourceTree = "<group>"; };
+		34B82FC0202839F900598767 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		34B82FC12028400400598767 /* JRImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageCell.h; sourceTree = "<group>"; };
+		34B82FC22028400400598767 /* JRImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +119,17 @@
 		3498B3A920245B4A0087F377 /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
-				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
 				3498B3AD20245BD00087F377 /* JRTestViewController.h */,
 				3498B3AE20245BD00087F377 /* JRTestViewController.m */,
+				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
+				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
 				3498B3B420246FE10087F377 /* JRAlbum.h */,
 				3498B3B520246FE10087F377 /* JRAlbum.m */,
 				3498B3B7202470640087F377 /* JRAlbumManager.h */,
 				3498B3B8202470640087F377 /* JRAlbumManager.m */,
+				34B82FC0202839F900598767 /* Header.h */,
+				34B82FC12028400400598767 /* JRImageCell.h */,
+				34B82FC22028400400598767 /* JRImageCell.m */,
 			);
 			path = JRImagePicker;
 			sourceTree = "<group>";
@@ -212,6 +219,7 @@
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
 				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,
+				34B82FC32028400400598767 /* JRImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

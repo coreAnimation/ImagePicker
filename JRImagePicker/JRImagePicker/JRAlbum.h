@@ -6,8 +6,9 @@
 //  Copyright © 2018年 王潇. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
+@class PHFetchResult;
 @class PHAssetCollection;
 @interface JRAlbum : NSObject
 
@@ -20,6 +21,17 @@
  相册资源数量
  */
 @property (nonatomic, assign) NSInteger	count;
+
+/**
+ 相册封面
+ */
+@property (nonatomic, strong) UIImage	*image;
+
+/**
+ <#Description#>
+ */
+@property (nonatomic, strong) PHFetchResult *fetchResult;
+
 
 /**
  相册索引

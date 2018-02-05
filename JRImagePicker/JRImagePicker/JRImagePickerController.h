@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRAlbum;
+
 @interface JRImagePickerController : UIViewController
+
+/**
+ 相册
+ */
+@property (nonatomic, strong) JRAlbum	*album;
 
 @end
