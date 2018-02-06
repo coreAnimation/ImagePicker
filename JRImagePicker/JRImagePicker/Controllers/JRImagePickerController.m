@@ -45,6 +45,39 @@
 	self.collectionView.contentInset = UIEdgeInsetsMake(Margin_w, Margin_w, Margin_w, Margin_w);
 	[self.view addSubview:self.collectionView];
 	
+	[self.collectionView.panGestureRecognizer addTarget:self action:@selector(tapAct:)];
+	
+	
+//	UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self
+//																		  action:@selector(tapAct)];
+//	[self.collectionView addGestureRecognizer:tap];
+//
+//	[tap requireGestureRecognizerToFail:self.collectionView.panGestureRecognizer];
+}
+
+- (void)tapAct:(UIGestureRecognizer *)gesture {
+	
+	CGPoint p = [gesture locationInView:self.collectionView];
+	
+	switch (gesture.state) {
+		case UIGestureRecognizerStateBegan:
+			NSLog(@"-------- %@", NSStringFromCGPoint(p));
+			break;
+			
+		case UIGestureRecognizerStateChanged:
+			NSLog(@"======== %@", NSStringFromCGPoint(p));
+			break;
+		
+		case UIGestureRecognizerStateFailed:
+		case UIGestureRecognizerStateCancelled:
+			
+			break;
+			
+		default:
+			break;
+	}
+	
+	NSLog(@"========");
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -68,6 +101,13 @@
 	
 	cell.isSelected = !cell.isSelected;
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//	UIPanGestureRecognizer *pan = scrollView.panGestureRecognizer;
+//
+//	CGPoint p = [pan locationInView:scrollView];
+//	NSLog(@"============== %@", NSStringFromCGPoint(p));
+//}
 
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;
