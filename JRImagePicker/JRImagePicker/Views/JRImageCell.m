@@ -38,7 +38,7 @@
 	[self.contentView addSubview:self.imgView];
 	
 	self.selectedView = [UIView new];
-	self.selectedView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+	self.selectedView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.6];
 	[self.contentView addSubview:self.selectedView];
 	
 	self.selectedView.hidden = YES;

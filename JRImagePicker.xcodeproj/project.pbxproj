@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303ACFCF202A2776002842E3 /* JRCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 303ACFCE202A2776002842E3 /* JRCollectionView.m */; };
 		304E4F37202A0D3C007A0517 /* JRAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 304E4F36202A0D3C007A0517 /* JRAsset.m */; };
 		3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB231FDBA06C00FC110A /* AppDelegate.m */; };
 		3054FB271FDBA06C00FC110A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB261FDBA06C00FC110A /* ViewController.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		303ACFCD202A2776002842E3 /* JRCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRCollectionView.h; sourceTree = "<group>"; };
+		303ACFCE202A2776002842E3 /* JRCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRCollectionView.m; sourceTree = "<group>"; };
 		304E4F35202A0D3C007A0517 /* JRAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAsset.h; sourceTree = "<group>"; };
 		304E4F36202A0D3C007A0517 /* JRAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAsset.m; sourceTree = "<group>"; };
 		3054FB1F1FDBA06C00FC110A /* JRImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JRImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +105,8 @@
 			children = (
 				34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */,
 				34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */,
+				303ACFCD202A2776002842E3 /* JRCollectionView.h */,
+				303ACFCE202A2776002842E3 /* JRCollectionView.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */,
 				3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */,
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
+				303ACFCF202A2776002842E3 /* JRCollectionView.m in Sources */,
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
 				34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */,
 				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,

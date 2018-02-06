@@ -13,14 +13,23 @@
 #import "Header.h"
 #import "JRImageCell.h"
 #import "JRAsset.h"
+#import "JRCollectionView.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate>
 ///
-@property (nonatomic, strong) UICollectionView	*collectionView;
+@property (nonatomic, strong) JRCollectionView	*collectionView;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
 
 //@property (nonatomic, strong) NSMutableArray			*assetList;
+
+@property (nonatomic, strong) NSIndexPath 		*startIndexPath;
+
+@property (nonatomic, strong) NSIndexPath 		*endIndexPath;
+
+@property (nonatomic, assign) BOOL				selectStatus;
+
+@property (nonatomic, strong) NSArray			*backPathArray;
 
 @end
 
@@ -36,7 +45,7 @@
 /// 初始化界面
 - (void)setupView {
 	
-	self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.frame
+	self.collectionView = [[JRCollectionView alloc] initWithFrame:self.view.frame
 											 collectionViewLayout:self.layout];
 	[self.collectionView registerClass:[JRImageCell class] forCellWithReuseIdentifier:@"item"];
 	self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -45,14 +54,13 @@
 	self.collectionView.contentInset = UIEdgeInsetsMake(Margin_w, Margin_w, Margin_w, Margin_w);
 	[self.view addSubview:self.collectionView];
 	
-	[self.collectionView.panGestureRecognizer addTarget:self action:@selector(tapAct:)];
+//	[self.collectionView.panGestureRecognizer addTarget:self action:@selector(tapAct:)];
 	
 	
-//	UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self
-//																		  action:@selector(tapAct)];
-//	[self.collectionView addGestureRecognizer:tap];
-//
-//	[tap requireGestureRecognizerToFail:self.collectionView.panGestureRecognizer];
+	UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self
+																		  action:@selector(tapAct:)];
+	tap.maximumNumberOfTouches = 1;
+	[self.view addGestureRecognizer:tap];
 }
 
 - (void)tapAct:(UIGestureRecognizer *)gesture {
@@ -60,24 +68,74 @@
 	CGPoint p = [gesture locationInView:self.collectionView];
 	
 	switch (gesture.state) {
-		case UIGestureRecognizerStateBegan:
-			NSLog(@"-------- %@", NSStringFromCGPoint(p));
+		case UIGestureRecognizerStateBegan: {
+			self.startIndexPath = [self.collectionView indexPathForItemAtPoint:p];
+			JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:self.startIndexPath];
+			self.selectStatus = !cell.isSelected;
+		}
 			break;
 			
 		case UIGestureRecognizerStateChanged:
-			NSLog(@"======== %@", NSStringFromCGPoint(p));
+			self.endIndexPath = [self.collectionView indexPathForItemAtPoint:p];
 			break;
 		
 		case UIGestureRecognizerStateFailed:
 		case UIGestureRecognizerStateCancelled:
-			
+		case UIGestureRecognizerStateEnded:
+			self.startIndexPath = nil;
+			self.endIndexPath   = nil;
+			self.backPathArray  = nil;
 			break;
-			
 		default:
 			break;
 	}
+
+	NSArray *pathArray = [self indexPathList:self.startIndexPath endIndexPath:self.endIndexPath];
 	
-	NSLog(@"========");
+	for (NSIndexPath *path in pathArray) {
+		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
+		cell.isSelected = self.selectStatus;
+	}
+	
+	if (pathArray.count != 0) {
+		
+		for (NSIndexPath *indexPath in self.backPathArray) {
+			
+			if (![pathArray containsObject:indexPath]) {
+				JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+				cell.isSelected = !self.selectStatus;
+			}
+		}
+		// 备份
+		self.backPathArray = [pathArray copy];
+	}
+}
+
+- (NSArray *)indexPathList:(NSIndexPath *)startPath endIndexPath:(NSIndexPath *)endPath {
+
+	if (startPath == nil || endPath == nil) {
+		return @[];
+	}
+	
+	if (startPath.row == endPath.row) {
+		return @[startPath];
+	}
+	
+	NSMutableArray *tmpArray = [NSMutableArray array];
+	if (startPath.row > endPath.row) {
+		for (NSInteger row = endPath.row; row<=startPath.row; row++) {
+			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:startPath.section];
+			[tmpArray addObject:indexPath];
+		}
+		return tmpArray;
+	} else {
+		
+		for (NSInteger row = startPath.row; row<=endPath.row; row++) {
+			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:startPath.section];
+			[tmpArray addObject:indexPath];
+		}
+		return tmpArray;
+	}
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
