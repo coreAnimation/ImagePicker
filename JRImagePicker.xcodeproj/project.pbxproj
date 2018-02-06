@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		304E4F37202A0D3C007A0517 /* JRAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 304E4F36202A0D3C007A0517 /* JRAsset.m */; };
 		3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB231FDBA06C00FC110A /* AppDelegate.m */; };
 		3054FB271FDBA06C00FC110A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB261FDBA06C00FC110A /* ViewController.m */; };
 		3054FB2A1FDBA06C00FC110A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3054FB281FDBA06C00FC110A /* Main.storyboard */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		304E4F35202A0D3C007A0517 /* JRAsset.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAsset.h; sourceTree = "<group>"; };
+		304E4F36202A0D3C007A0517 /* JRAsset.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAsset.m; sourceTree = "<group>"; };
 		3054FB1F1FDBA06C00FC110A /* JRImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JRImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3054FB221FDBA06C00FC110A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3054FB231FDBA06C00FC110A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -61,6 +64,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304E4F31202A0C8F007A0517 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3498B3AD20245BD00087F377 /* JRTestViewController.h */,
+				3498B3AE20245BD00087F377 /* JRTestViewController.m */,
+				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
+				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		304E4F32202A0C9D007A0517 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3498B3B420246FE10087F377 /* JRAlbum.h */,
+				3498B3B520246FE10087F377 /* JRAlbum.m */,
+				3498B3B7202470640087F377 /* JRAlbumManager.h */,
+				3498B3B8202470640087F377 /* JRAlbumManager.m */,
+				304E4F35202A0D3C007A0517 /* JRAsset.h */,
+				304E4F36202A0D3C007A0517 /* JRAsset.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		304E4F33202A0CA2007A0517 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				34B82FC12028400400598767 /* JRImageCell.h */,
+				34B82FC22028400400598767 /* JRImageCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		304E4F34202A0CBB007A0517 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */,
+				34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3054FB161FDBA06C00FC110A = {
 			isa = PBXGroup;
 			children = (
@@ -122,19 +167,11 @@
 		3498B3A920245B4A0087F377 /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				3498B3AD20245BD00087F377 /* JRTestViewController.h */,
-				3498B3AE20245BD00087F377 /* JRTestViewController.m */,
-				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
-				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
-				3498B3B420246FE10087F377 /* JRAlbum.h */,
-				3498B3B520246FE10087F377 /* JRAlbum.m */,
-				3498B3B7202470640087F377 /* JRAlbumManager.h */,
-				3498B3B8202470640087F377 /* JRAlbumManager.m */,
 				34B82FC0202839F900598767 /* Header.h */,
-				34B82FC12028400400598767 /* JRImageCell.h */,
-				34B82FC22028400400598767 /* JRImageCell.m */,
-				34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */,
-				34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */,
+				304E4F34202A0CBB007A0517 /* Extension */,
+				304E4F33202A0CA2007A0517 /* Views */,
+				304E4F32202A0C9D007A0517 /* Models */,
+				304E4F31202A0C8F007A0517 /* Controllers */,
 			);
 			path = JRImagePicker;
 			sourceTree = "<group>";
@@ -225,6 +262,7 @@
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
 				34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */,
 				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,
+				304E4F37202A0D3C007A0517 /* JRAsset.m in Sources */,
 				34B82FC32028400400598767 /* JRImageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

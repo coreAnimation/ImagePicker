@@ -9,11 +9,14 @@
 #import "JRImageCell.h"
 #import <Photos/Photos.h>
 #import "Header.h"
+#import "JRAsset.h"
 #import "PHImageManager+JRExtension.h"
 
 @interface JRImageCell ()
 
 @property (nonatomic, strong) UIImageView	*imgView;
+
+@property (nonatomic, strong) UIView		*selectedView;
 
 @end
 
@@ -33,6 +36,12 @@
 	self.imgView.contentMode = UIViewContentModeScaleAspectFill;
 	self.imgView.clipsToBounds = YES;
 	[self.contentView addSubview:self.imgView];
+	
+	self.selectedView = [UIView new];
+	self.selectedView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+	[self.contentView addSubview:self.selectedView];
+	
+	self.selectedView.hidden = YES;
 }
 
 /// 布局
@@ -41,13 +50,24 @@
 	
 	///
 	self.imgView.frame = self.contentView.bounds;
+	self.selectedView.frame = self.contentView.bounds;
 }
 
-- (void)setAsset:(PHAsset *)asset {
+///
+- (void)setIsSelected:(BOOL)isSelected {
+	_isSelected = isSelected;
+	
+	self.selectedView.hidden = !isSelected;
+	self.asset.isSelected = isSelected;
+}
+
+- (void)setAsset:(JRAsset *)asset {
 	_asset = asset;
 	
+	PHAsset *phAsset = asset.asset;
+	
 	CGFloat sizeW = (Screen_w - Margin_w * 5) / (CGFloat)4 * [UIScreen mainScreen].scale;
-	CGFloat aspectRatio = asset.pixelHeight / (CGFloat)asset.pixelWidth;
+	CGFloat aspectRatio = phAsset.pixelHeight / (CGFloat)phAsset.pixelWidth;
 	
 	if (asset) {
 		
@@ -64,26 +84,15 @@
 		}
 
 		/// 获取图片
-		[PHImageManager jr_imageForAsset:asset
+		[PHImageManager jr_imageForAsset:phAsset
 							  targetSize:imageSize
 							  accomplish:^(UIImage *result, NSDictionary *info) {
 								  if (result) { self.imgView.image = result; }
 		}];
-		
-//		PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
-//		option.resizeMode = PHImageRequestOptionsResizeModeFast;
-//
-//		[[PHImageManager defaultManager] requestImageForAsset:asset
-//												   targetSize:imageSize//CGSizeMake(200, 200)
-//												  contentMode:PHImageContentModeAspectFill
-//													  options:option
-//												resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
-//													if (result) {
-//														self.imgView.image = result;
-//													}
-//												}];
 	}
 	
+	
+	self.selectedView.hidden = !asset.isSelected;
 }
 
 

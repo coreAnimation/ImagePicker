@@ -12,14 +12,15 @@
 #import "JRAlbum.h"
 #import "Header.h"
 #import "JRImageCell.h"
+#import "JRAsset.h"
 
-@interface JRImagePickerController () <UICollectionViewDataSource>
+@interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate>
 ///
 @property (nonatomic, strong) UICollectionView	*collectionView;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
 
-@property (nonatomic, strong) NSMutableArray			*assetList;
+//@property (nonatomic, strong) NSMutableArray			*assetList;
 
 @end
 
@@ -40,13 +41,14 @@
 	[self.collectionView registerClass:[JRImageCell class] forCellWithReuseIdentifier:@"item"];
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	self.collectionView.dataSource = self;
+	self.collectionView.delegate = self;
 	self.collectionView.contentInset = UIEdgeInsetsMake(Margin_w, Margin_w, Margin_w, Margin_w);
 	[self.view addSubview:self.collectionView];
 	
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return self.assetList.count;
+	return self.album.assetList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -55,9 +57,16 @@
 	JRImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item"
 																		   forIndexPath:indexPath];
 	cell.backgroundColor = [UIColor redColor];
-	cell.asset = self.assetList[indexPath.row];
+	cell.asset = self.album.assetList[indexPath.row];
 	
 	return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+	JRImageCell *cell = (JRImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
+	
+	cell.isSelected = !cell.isSelected;
 }
 
 - (void)setAlbum:(JRAlbum *)album {
@@ -66,13 +75,18 @@
 	self.title = album.name;
 	
 	///
-	self.assetList = [NSMutableArray arrayWithCapacity:album.count];
-	
+	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:album.count];
+
 	///
 	[album.fetchResult enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-		[self.assetList addObject:obj];
+		JRAsset *asset = [JRAsset new];
+		asset.asset = obj;
+		[tmpArray addObject:asset];
 	}];
 
+	///
+	album.assetList = tmpArray;
+	///
 	[self.collectionView reloadData];
 }
 

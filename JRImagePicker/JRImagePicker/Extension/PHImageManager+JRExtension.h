@@ -10,12 +10,6 @@
 
 @interface PHImageManager (JRExtension)
 
-//- (PHImageRequestID)requestImageForAsset:(PHAsset *)asset
-//							  targetSize:(CGSize)targetSize
-//							 contentMode:(PHImageContentMode)contentMode
-//								 options:(nullable PHImageRequestOptions *)options
-//						   resultHandler:(void (^)(UIImage *__nullable result, NSDictionary *__nullable info))resultHandler;
-
 + (PHImageRequestID)jr_imageForAsset:(PHAsset *)asset
 						  targetSize:(CGSize)targetSize
 					   accomplish:(void (^)(UIImage *result, NSDictionary *info))accomplish;

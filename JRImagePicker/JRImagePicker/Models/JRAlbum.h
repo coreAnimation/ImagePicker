@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRAsset;
 @class PHFetchResult;
 @class PHAssetCollection;
 @interface JRAlbum : NSObject
@@ -28,9 +29,14 @@
 @property (nonatomic, strong) UIImage	*image;
 
 /**
- <#Description#>
+ 获取资源
  */
 @property (nonatomic, strong) PHFetchResult *fetchResult;
+
+/**
+ 资源列表
+ */
+@property (nonatomic, strong) NSMutableArray<JRAsset *>		*assetList;
 
 
 /**

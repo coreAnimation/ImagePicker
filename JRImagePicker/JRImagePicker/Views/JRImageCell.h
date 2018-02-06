@@ -9,14 +9,17 @@
 #import <UIKit/UIKit.h>
 
 //@class JRAlbum;
-@class PHAsset;
+@class JRAsset;
 @interface JRImageCell : UICollectionViewCell
 
 /**
  模型
  */
-//@property (nonatomic, strong) JRAlbum	*model;
+@property (nonatomic, strong) JRAsset	*asset;
 
-@property (nonatomic, strong) PHAsset	*asset;
+/**
+ 是否被选中
+ */
+@property (nonatomic, assign) BOOL		isSelected;
 
 @end
