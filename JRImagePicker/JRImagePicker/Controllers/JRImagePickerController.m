@@ -37,6 +37,9 @@
 
 @property (nonatomic, assign) CGFloat			speed;
 
+
+@property (nonatomic, strong) UIPanGestureRecognizer *tap;
+
 @end
 
 @implementation JRImagePickerController
@@ -77,6 +80,8 @@
 	tap.maximumNumberOfTouches = 1;
 	[self.view addGestureRecognizer:tap];
 	
+	self.tap = tap;
+	
 	/// 选中集合
 	self.backPathArray = [NSMutableArray array];
 }
@@ -98,7 +103,7 @@
 									   selector:@selector(scrollViewScrollAction)
 									   userInfo:nil
 										repeats:YES];
-	[[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSDefaultRunLoopMode];
+	[[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 /// 关闭定时器
@@ -129,6 +134,8 @@
 		[self.timer invalidate];
 		self.timer = nil;
 	}
+	
+	[self tapAct:self.tap];
 }
 
 /// 选择图片手势
@@ -152,7 +159,7 @@
 			tmpIndexPath = [self.collectionView indexPathForItemAtPoint:p];
 			
 			CGPoint offset = [gesture locationInView:self.view];
-			
+			NSLog(@"==============================");
 			if (offset.y < 85) {
 				[self scrollAnimation:YES];
 			} else
