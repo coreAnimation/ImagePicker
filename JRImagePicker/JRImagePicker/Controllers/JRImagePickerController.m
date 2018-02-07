@@ -50,9 +50,7 @@
 
 /// 初始化界面
 - (void)setupView {
-	
-	
-	
+
 	/// 资源列表
 	CGRect frame = CGRectMake(0, 64, Screen_w, Screen_h - 64 - 40);
 //	CGRect frame = CGRectMake(0, 0, Screen_w, Screen_h);
@@ -183,6 +181,7 @@
 
 /// 选择操作
 - (void)selectAction:(NSIndexPath *)tmpIndexPath {
+	
 	/// 为发生选择
 	if ([self.endIndexPath isEqual:tmpIndexPath] || !tmpIndexPath) {
 		return;
@@ -205,8 +204,7 @@
 		cell.isSelected = !self.selectStatus;
 		[self.backPathArray removeObject:path];
 	}
-	
-	
+
 	/// 遍历所有选择 获取选择不同的部分
 	for (NSIndexPath *path in pathArray) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
@@ -214,15 +212,13 @@
 			[self.backPathArray addObject:path];
 		}
 	}
-	
+
 	/// 遍历选择不同的部分 设置选择状态为相同
 	for (NSIndexPath *path in self.backPathArray) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = self.selectStatus;
 	}
 }
-
-
 
 /// 是否相同
 - (BOOL)isEqualArray:(NSArray *)array1 array2:(NSArray *)array2 {
