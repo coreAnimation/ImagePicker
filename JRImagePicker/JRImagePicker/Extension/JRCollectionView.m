@@ -17,21 +17,9 @@
 - (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout {
 	self = [super initWithFrame:frame collectionViewLayout:layout];
 
-	NSLog(@"asdasdasdsad");
-	self.panGestureRecognizer.delegate = self;
+//	self.panGestureRecognizer.delegate = self;
 	
 	return self;
 }
-//
-//-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-//
-//	NSLog(@"====== %@", gestureRecognizer.view);
-//	return YES;
-//}
-
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//	return YES;
-//}
 
 @end
