@@ -29,7 +29,9 @@
 
 @property (nonatomic, assign) BOOL				selectStatus;
 
-@property (nonatomic, strong) NSArray			*backPathArray;
+@property (nonatomic, strong) NSMutableArray	*backPathArray;
+
+@property (nonatomic, assign) NSInteger			pathCount;
 
 @end
 
@@ -61,22 +63,28 @@
 																		  action:@selector(tapAct:)];
 	tap.maximumNumberOfTouches = 1;
 	[self.view addGestureRecognizer:tap];
+	
+	self.backPathArray = [NSMutableArray array];
 }
 
 - (void)tapAct:(UIGestureRecognizer *)gesture {
 	
 	CGPoint p = [gesture locationInView:self.collectionView];
 	
+	NSIndexPath *tmpIndexPath = nil;
+	
 	switch (gesture.state) {
 		case UIGestureRecognizerStateBegan: {
+			[self.backPathArray removeAllObjects];
 			self.startIndexPath = [self.collectionView indexPathForItemAtPoint:p];
+			tmpIndexPath = self.startIndexPath;
 			JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:self.startIndexPath];
 			self.selectStatus = !cell.isSelected;
 		}
 			break;
 			
 		case UIGestureRecognizerStateChanged:
-			self.endIndexPath = [self.collectionView indexPathForItemAtPoint:p];
+			tmpIndexPath = [self.collectionView indexPathForItemAtPoint:p];
 			break;
 		
 		case UIGestureRecognizerStateFailed:
@@ -84,33 +92,70 @@
 		case UIGestureRecognizerStateEnded:
 			self.startIndexPath = nil;
 			self.endIndexPath   = nil;
-			self.backPathArray  = nil;
+//			self.backPathArray  = nil;
+			[self.backPathArray removeAllObjects];
 			break;
 		default:
 			break;
 	}
+	
+	/// 为发生选择
+	if ([self.endIndexPath isEqual:tmpIndexPath] || !tmpIndexPath) {
+		return;
+	}
+	self.endIndexPath = tmpIndexPath;
 
+	/// 获取所有选择的 item 索引数组
 	NSArray *pathArray = [self indexPathList:self.startIndexPath endIndexPath:self.endIndexPath];
 	
+	/// 遍历已有的选择
+	NSMutableArray *sub = [NSMutableArray array];
+	for (NSIndexPath *path in self.backPathArray) {
+		if (![pathArray containsObject:path]) {
+			[sub addObject:path];
+		}
+	}
+
+	for (NSIndexPath *path in sub) {
+		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
+		cell.isSelected = !self.selectStatus;
+		[self.backPathArray removeObject:path];
+	}
+	
+	
+	/// 遍历所有选择 获取选择不同的部分
 	for (NSIndexPath *path in pathArray) {
+		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
+		if (cell.isSelected != self.selectStatus) {
+			[self.backPathArray addObject:path];
+		}
+	}
+	
+	/// 遍历选择不同的部分 设置选择状态为相同
+	for (NSIndexPath *path in self.backPathArray) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = self.selectStatus;
 	}
-	
-	if (pathArray.count != 0) {
-		
-		for (NSIndexPath *indexPath in self.backPathArray) {
-			
-			if (![pathArray containsObject:indexPath]) {
-				JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-				cell.isSelected = !self.selectStatus;
-			}
-		}
-		// 备份
-		self.backPathArray = [pathArray copy];
-	}
 }
 
+/// 是否相同
+- (BOOL)isEqualArray:(NSArray *)array1 array2:(NSArray *)array2 {
+	
+	if (array1.count != array2.count) {
+		return NO;
+	}
+	
+	BOOL equal = YES;
+	for (NSIndexPath *indexPath in array1) {
+		if (![array2 containsObject:indexPath]) {
+			equal = NO;
+		}
+	}
+	return equal;
+}
+
+
+/// 获取 indexPath 列表
 - (NSArray *)indexPathList:(NSIndexPath *)startPath endIndexPath:(NSIndexPath *)endPath {
 
 	if (startPath == nil || endPath == nil) {
@@ -126,6 +171,11 @@
 		for (NSInteger row = endPath.row; row<=startPath.row; row++) {
 			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:startPath.section];
 			[tmpArray addObject:indexPath];
+			
+//			JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+//			if (cell.isSelected != self.selectStatus) {
+//				[tmpArray addObject:indexPath];
+//			}
 		}
 		return tmpArray;
 	} else {
@@ -133,6 +183,11 @@
 		for (NSInteger row = startPath.row; row<=endPath.row; row++) {
 			NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:startPath.section];
 			[tmpArray addObject:indexPath];
+
+//			JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+//			if (cell.isSelected != self.selectStatus) {
+//				[tmpArray addObject:indexPath];
+//			}
 		}
 		return tmpArray;
 	}
@@ -159,13 +214,6 @@
 	
 	cell.isSelected = !cell.isSelected;
 }
-
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//	UIPanGestureRecognizer *pan = scrollView.panGestureRecognizer;
-//
-//	CGPoint p = [pan locationInView:scrollView];
-//	NSLog(@"============== %@", NSStringFromCGPoint(p));
-//}
 
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;

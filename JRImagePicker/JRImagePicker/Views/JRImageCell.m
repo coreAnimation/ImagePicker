@@ -53,7 +53,7 @@
 	self.selectedView.frame = self.contentView.bounds;
 }
 
-///
+/// 设置选中状态
 - (void)setIsSelected:(BOOL)isSelected {
 	_isSelected = isSelected;
 	
@@ -61,6 +61,17 @@
 	self.asset.isSelected = isSelected;
 }
 
+- (void)setTmpSelected:(BOOL)tmpSelected {
+	_tmpSelected = tmpSelected;
+	
+	if (tmpSelected) {
+		self.isSelected = YES;
+	} else {
+		self.isSelected = self.isSelected;
+	}
+}
+
+// 设置多媒体资源
 - (void)setAsset:(JRAsset *)asset {
 	_asset = asset;
 	
@@ -91,8 +102,10 @@
 		}];
 	}
 	
+	/// 设置选择状态
+	self.isSelected = asset.isSelected;
 	
-	self.selectedView.hidden = !asset.isSelected;
+//	self.selectedView.hidden = !asset.isSelected;
 }
 
 

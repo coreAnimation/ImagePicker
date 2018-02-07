@@ -22,4 +22,9 @@
  */
 @property (nonatomic, assign) BOOL		isSelected;
 
+/**
+ 临时选中
+ */
+@property (nonatomic, assign) BOOL		tmpSelected;
+
 @end
