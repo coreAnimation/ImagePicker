@@ -10,6 +10,16 @@
 
 //@class JRAlbum;
 @class JRAsset;
+
+@protocol JRImageCellDelegate <NSObject>
+@optional
+
+/// 选中
+- (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected;
+
+@end
+
+
 @interface JRImageCell : UICollectionViewCell
 
 /**
@@ -26,5 +36,15 @@
  临时选中
  */
 @property (nonatomic, assign) BOOL		tmpSelected;
+
+/**
+ 选中索引
+ */
+@property (nonatomic, strong) NSIndexPath	*indexPath;
+
+/**
+ 代理对象
+ */
+@property (nonatomic, strong) id<JRImageCellDelegate>	delegate;
 
 @end

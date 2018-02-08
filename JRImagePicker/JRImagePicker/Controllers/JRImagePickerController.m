@@ -15,7 +15,8 @@
 #import "JRAsset.h"
 #import "JRCollectionView.h"
 
-@interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
+										JRImageCellDelegate>
 
 /// 图片列表
 @property (nonatomic, strong) JRCollectionView	*collectionView;
@@ -157,7 +158,6 @@
 			tmpIndexPath = [self.collectionView indexPathForItemAtPoint:p];
 			
 			CGPoint offset = [gesture locationInView:self.view];
-			NSLog(@"==============================");
 			if (offset.y < 85) {
 				[self scrollAnimation:YES];
 			} else
@@ -280,15 +280,23 @@
 																		   forIndexPath:indexPath];
 	cell.backgroundColor = [UIColor redColor];
 	cell.asset = self.album.assetList[indexPath.row];
+	cell.delegate = self;
 	
 	return cell;
 }
 
+/// 点击图片
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	
-	JRImageCell *cell = (JRImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
-	
-	cell.isSelected = !cell.isSelected;
+	NSLog(@"-- 点击图片: %zd", indexPath.row);
+//	JRImageCell *cell = (JRImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
+//	cell.isSelected = !cell.isSelected;
+}
+
+#pragma mark - JRImageCellDelegate
+/// 选择图片回调
+- (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
+	NSLog(@"====%zd", indexPath.row);
 }
 
 - (void)setAlbum:(JRAlbum *)album {
