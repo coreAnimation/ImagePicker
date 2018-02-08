@@ -56,14 +56,12 @@
 
 	/// 资源列表
 	CGRect frame = CGRectMake(0, 64, Screen_w, Screen_h - 64 - 40);
-//	CGRect frame = CGRectMake(0, 0, Screen_w, Screen_h);
 	self.collectionView = [[JRCollectionView alloc] initWithFrame:frame
 											 collectionViewLayout:self.layout];
 	[self.collectionView registerClass:[JRImageCell class] forCellWithReuseIdentifier:@"item"];
 	self.collectionView.backgroundColor = [UIColor whiteColor];
-	self.collectionView.dataSource = self;
-	self.collectionView.delegate = self;
-//	self.collectionView.contentInset = UIEdgeInsetsMake(Margin_w + 64, Margin_w, Margin_w + 40, Margin_w);
+	self.collectionView.dataSource 	 = self;
+	self.collectionView.delegate 	 = self;
 	self.collectionView.contentInset = UIEdgeInsetsMake(Margin_w, Margin_w, Margin_w, Margin_w);
 	[self.view addSubview:self.collectionView];
 	

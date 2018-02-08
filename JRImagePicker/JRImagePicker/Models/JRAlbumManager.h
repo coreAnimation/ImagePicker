@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class JRAlbum;
+@class JRAsset;
 @interface JRAlbumManager : NSObject
 
 /**
@@ -22,6 +23,11 @@
  相册列表
  */
 @property (nonatomic, strong) NSArray<JRAlbum *>	*albumList;
+
+/**
+ 选中的资源
+ */
+@property (nonatomic, strong) NSMutableArray<JRAsset *>	*selectedItem;
 
 /**
  获取相册资源
