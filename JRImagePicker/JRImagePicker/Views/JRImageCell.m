@@ -58,13 +58,13 @@
 /// 选中按钮事件
 - (void)selectAction:(UIButton *)sender {
 	
+	/// 设置选中状态
+	self.isSelected = !self.isSelected;
+	
 	/// 调用选择
 	if ([self.delegate respondsToSelector:@selector(selectAsset:asset:isSelected:)]) {
 		[self.delegate selectAsset:self.indexPath asset:self.asset isSelected:sender.selected];
 	}
-	
-	///
-	self.isSelected = !self.isSelected;
 }
 
 /// 布局
@@ -90,6 +90,13 @@
 	self.asset.isSelected = isSelected;
 	
 	self.selButton.selected = isSelected;
+	
+//	if (isSelected) {
+//		/// 添加
+//		NSLog(@"添加 --- %zd", self.indexPath.row);
+//	} else {
+//		NSLog(@"删除 --- %zd", self.indexPath.row);
+//	}
 }
 
 - (void)setTmpSelected:(BOOL)tmpSelected {

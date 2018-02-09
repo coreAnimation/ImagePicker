@@ -13,6 +13,7 @@
 #import "Header.h"
 #import "JRImageCell.h"
 #import "JRAsset.h"
+#import "JRAlbumManager.h"
 #import "JRCollectionView.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
@@ -207,6 +208,7 @@
 	for (NSIndexPath *path in sub) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = !self.selectStatus;
+		[self selectAsset:path asset:cell.asset isSelected:cell.isSelected];
 		[self.backPathArray removeObject:path];
 	}
 
@@ -222,6 +224,7 @@
 	for (NSIndexPath *path in self.backPathArray) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = self.selectStatus;
+		[self selectAsset:path asset:cell.asset isSelected:cell.isSelected];
 	}
 }
 
@@ -279,8 +282,9 @@
 	JRImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item"
 																		   forIndexPath:indexPath];
 	cell.backgroundColor = [UIColor redColor];
-	cell.asset = self.album.assetList[indexPath.row];
-	cell.delegate = self;
+	cell.asset 			 = self.album.assetList[indexPath.row];
+	cell.delegate 		 = self;
+	cell.indexPath 		 = indexPath;
 	
 	return cell;
 }
@@ -296,8 +300,30 @@
 #pragma mark - JRImageCellDelegate
 /// 选择图片回调
 - (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
-	NSLog(@"====%zd", indexPath.row);
+	
+	
+	
+	if (selected) {
+		/// 选中操作
+		NSLog(@"======= %@", [asset class]);
+//		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
+			[[JRAlbumManager sharedAlbumManager].selectedItem addObject:asset];
+//		}
+	} else {
+		/// 删除操作
+//		if ([[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
+			[[JRAlbumManager sharedAlbumManager].selectedItem removeObject:asset];
+//		}
+	}
+	
+	NSLog(@"======================================================================");
+	NSLog(@"%@", [JRAlbumManager sharedAlbumManager].selectedItem);
 }
+
+///// 选择资源
+//- (void)selectedAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
+//
+//}
 
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;

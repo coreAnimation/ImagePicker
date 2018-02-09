@@ -23,6 +23,12 @@
 	return instance;
 }
 
+- (instancetype)init {
+	self = [super init];
+	self.selectedItem = [NSMutableArray array];
+	return self;
+}
+
 /**
  获取资源
  */

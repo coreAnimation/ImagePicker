@@ -19,14 +19,14 @@
 ///
 @property (nonatomic, strong) NSArray<JRAlbum *>	*dataList;
 
-@property (nonatomic, strong) NSString		*testString;
+//@property (nonatomic, strong) NSString		*testString;
 
 @end
 
 @implementation ViewController
 
 //@synthesize testString = _myTestString;
-@dynamic testString;
+//@dynamic testString;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -40,8 +40,6 @@
 	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 	[self.view addSubview: self.tableView];
 	
-	self.testString = @"This is a Test!";
-	NSLog(@"%@", self.testString);
 	
 }
 
