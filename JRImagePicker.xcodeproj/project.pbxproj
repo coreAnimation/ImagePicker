@@ -15,6 +15,7 @@
 		3054FB2C1FDBA06C00FC110A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3054FB2B1FDBA06C00FC110A /* Assets.xcassets */; };
 		3054FB2F1FDBA06C00FC110A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3054FB2D1FDBA06C00FC110A /* LaunchScreen.storyboard */; };
 		3054FB321FDBA06C00FC110A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3054FB311FDBA06C00FC110A /* main.m */; };
+		307EA5C2203D18CC00C87F9E /* JRImageListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 307EA5C1203D18CC00C87F9E /* JRImageListController.m */; };
 		342025A4202C002400571A8F /* JRSelectedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 342025A3202C002400571A8F /* JRSelectedButton.m */; };
 		3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AB20245B500087F377 /* JRImagePickerController.m */; };
 		3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AE20245BD00087F377 /* JRTestViewController.m */; };
@@ -39,6 +40,8 @@
 		3054FB2E1FDBA06C00FC110A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3054FB301FDBA06C00FC110A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3054FB311FDBA06C00FC110A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		307EA5C0203D18CC00C87F9E /* JRImageListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageListController.h; sourceTree = "<group>"; };
+		307EA5C1203D18CC00C87F9E /* JRImageListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageListController.m; sourceTree = "<group>"; };
 		342025A2202C002400571A8F /* JRSelectedButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRSelectedButton.h; sourceTree = "<group>"; };
 		342025A3202C002400571A8F /* JRSelectedButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRSelectedButton.m; sourceTree = "<group>"; };
 		3498B3AA20245B500087F377 /* JRImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRImagePickerController.h; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				3498B3AE20245BD00087F377 /* JRTestViewController.m */,
 				3498B3AA20245B500087F377 /* JRImagePickerController.h */,
 				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
+				307EA5C0203D18CC00C87F9E /* JRImageListController.h */,
+				307EA5C1203D18CC00C87F9E /* JRImageListController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -274,6 +279,7 @@
 				3054FB241FDBA06C00FC110A /* AppDelegate.m in Sources */,
 				34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */,
 				3498B3B620246FE10087F377 /* JRAlbum.m in Sources */,
+				307EA5C2203D18CC00C87F9E /* JRImageListController.m in Sources */,
 				304E4F37202A0D3C007A0517 /* JRAsset.m in Sources */,
 				34B82FC32028400400598767 /* JRImageCell.m in Sources */,
 			);

@@ -34,4 +34,12 @@
  */
 - (void)fetchAlbumResource;
 
+/**
+ 是否包含
+
+ @param asset 资源
+ @return 是否包含
+ */
+- (BOOL)hasContainsAsset:(JRAsset *)asset;
+
 @end

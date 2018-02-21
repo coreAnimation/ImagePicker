@@ -10,4 +10,26 @@
 
 @implementation JRAsset
 
+- (BOOL)isEqual:(id)other
+{
+	if (other == self) {
+		return YES;
+	}
+	if ([self class] != [other class]) {
+		return NO;
+	}
+	
+	if ([other isKindOfClass:[JRAsset class]]) {
+		JRAsset *asset= (JRAsset *)other;
+		return [self.asset isEqual:asset.asset];
+	} else {
+		return NO;
+	}
+}
+
+- (NSUInteger)hash
+{
+	return [self.asset hash];
+}
+
 @end

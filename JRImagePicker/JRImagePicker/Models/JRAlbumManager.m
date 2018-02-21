@@ -82,8 +82,16 @@
 	self.albumList = tmpAlbum.copy;
 }
 
-
-
+/// 是否包含
+- (BOOL)hasContainsAsset:(JRAsset *)asset {
+	
+	for (JRAsset *ass in self.selectedItem) {
+		if (ass == asset) {
+			return YES;
+		}
+	}
+	return NO;
+}
 
 
 

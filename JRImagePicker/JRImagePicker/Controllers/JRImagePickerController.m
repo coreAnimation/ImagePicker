@@ -84,6 +84,14 @@
 	
 	/// 选中集合
 	self.backPathArray = [NSMutableArray array];
+	
+	
+	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+															   style:UIBarButtonItemStylePlain
+															  target:self
+															  action:@selector(finishAction)];
+	
+	self.navigationItem.rightBarButtonItem = finish;
 }
 
 /// 自动向下滑动
@@ -301,29 +309,18 @@
 /// 选择图片回调
 - (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
 	
-	
-	
 	if (selected) {
 		/// 选中操作
-		NSLog(@"======= %@", [asset class]);
-//		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
+		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem addObject:asset];
-//		}
+		}
 	} else {
 		/// 删除操作
-//		if ([[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
+		if ([[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem removeObject:asset];
-//		}
+		}
 	}
-	
-	NSLog(@"======================================================================");
-	NSLog(@"%@", [JRAlbumManager sharedAlbumManager].selectedItem);
 }
-
-///// 选择资源
-//- (void)selectedAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
-//
-//}
 
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;
@@ -359,6 +356,12 @@
 	_layout.itemSize = CGSizeMake(width, width);
 
 	return _layout;
+}
+
+
+/// 完成操作
+- (void)finishAction {
+	NSLog(@"====== finishAction");
 }
 
 @end
