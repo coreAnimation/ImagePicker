@@ -35,11 +35,11 @@
 	   forControlEvents:UIControlEventTouchUpInside];
 }
 
+/// 打开相册
 - (void)openPicker {
-	NSLog(@"asdasdsa");
-	
-	JRImageListController *list = [JRImageListController new];
-	[self.navigationController pushViewController:list animated:YES];
+	UINavigationController *list = [JRImageListController imageListController];
+	[self presentViewController:list animated:YES completion:nil];
+//	[self.navigationController pushViewController:list animated:YES];
 }
 
 @end

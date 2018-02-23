@@ -23,6 +23,14 @@
 
 @implementation JRImageListController
 
++ (UINavigationController *)imageListController {
+	
+	JRImageListController *imgList = [JRImageListController new];
+	UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:imgList];
+	return navVC;
+}
+
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -36,7 +44,7 @@
 	[self.view addSubview: self.tableView];
 	
 	
-	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"取消"
 															   style:UIBarButtonItemStylePlain
 															  target:self
 															  action:@selector(finishAction)];
@@ -79,7 +87,7 @@
 
 /// 完成操作
 - (void)finishAction {
-	NSLog(@"====== finishAction");
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

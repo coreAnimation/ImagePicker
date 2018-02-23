@@ -86,7 +86,7 @@
 	self.backPathArray = [NSMutableArray array];
 	
 	
-	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"完成"
+	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"取消"
 															   style:UIBarButtonItemStylePlain
 															  target:self
 															  action:@selector(finishAction)];
@@ -361,7 +361,7 @@
 
 /// 完成操作
 - (void)finishAction {
-	NSLog(@"====== finishAction");
+	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

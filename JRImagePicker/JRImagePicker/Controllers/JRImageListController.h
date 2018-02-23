@@ -10,4 +10,6 @@
 
 @interface JRImageListController : UIViewController
 
++ (UINavigationController *)imageListController;
+
 @end
