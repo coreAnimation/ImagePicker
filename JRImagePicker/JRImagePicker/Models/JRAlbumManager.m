@@ -37,11 +37,10 @@
 	/// 获取相册
 	PHFetchOptions *option = [[PHFetchOptions alloc] init];
 	option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld", PHAssetMediaTypeImage];
-	//	option.predicate = [NSPredicate predicateWithFormat:@"mediaType == %ld",
-	//											PHAssetMediaTypeVideo];
-	
+
 	PHFetchResult *smartAlbums = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum
-																		  subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+																		  subtype:PHAssetCollectionSubtypeAlbumRegular
+																		  options:nil];
 	
 	/// 临时相册
 	NSMutableArray *tmpAlbum = [NSMutableArray new];
@@ -60,8 +59,10 @@
 		album.name 			= albumName;
 		album.count 		= albumNumb;
 		album.fetchResult 	= fetchResult;
-		[tmpAlbum addObject:album];
-
+		if (albumNumb > 0) {
+			[tmpAlbum addObject:album];
+		}
+		
 		/// 获取相册封面
 		PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
 		option.resizeMode = PHImageRequestOptionsResizeModeFast;

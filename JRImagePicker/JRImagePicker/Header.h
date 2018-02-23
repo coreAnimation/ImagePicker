@@ -15,4 +15,7 @@
 
 #define Screen_w [UIScreen mainScreen].bounds.size.width
 
+
+#define Sele_Bar_h 40
+
 #endif /* Header_h */

@@ -50,13 +50,18 @@
 															  action:@selector(finishAction)];
 	
 	self.navigationItem.rightBarButtonItem = finish;
+	
+	
+	JRAlbumManager *manager = [JRAlbumManager sharedAlbumManager];
+	[manager fetchAlbumResource];
+	self.dataList = manager.albumList;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
-	JRAlbumManager *manager = [JRAlbumManager sharedAlbumManager];
-	[manager fetchAlbumResource];
-	self.dataList = manager.albumList;
+//	JRAlbumManager *manager = [JRAlbumManager sharedAlbumManager];
+//	[manager fetchAlbumResource];
+//	self.dataList = manager.albumList;
 	[self.tableView reloadData];
 }
 

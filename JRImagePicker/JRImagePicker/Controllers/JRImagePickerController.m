@@ -15,6 +15,7 @@
 #import "JRAsset.h"
 #import "JRAlbumManager.h"
 #import "JRCollectionView.h"
+#import "JRSelectedView.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
 										JRImageCellDelegate>
@@ -22,7 +23,7 @@
 /// 图片列表
 @property (nonatomic, strong) JRCollectionView	*collectionView;
 /// 底部选择Bar
-@property (nonatomic, strong) UIView			*bottomBar;
+@property (nonatomic, strong) JRSelectedView	*bottomBar;
 /// 布局
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
 /// 选择开始索引
@@ -34,11 +35,10 @@
 /// 选中备份列表
 @property (nonatomic, strong) NSMutableArray	*backPathArray;
 
+/// 移动定时器
 @property (nonatomic, strong) NSTimer			*timer;
-@property (nonatomic, strong) NSTimer			*timer2;
-
+/// 移动速度
 @property (nonatomic, assign) CGFloat			speed;
-
 
 @property (nonatomic, strong) UIPanGestureRecognizer *tap;
 
@@ -70,8 +70,7 @@
 	self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
 	
 	/// 底部操作调
-	self.bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, Screen_h - 40, Screen_w, 40)];
-	self.bottomBar.backgroundColor = [UIColor orangeColor];
+	self.bottomBar = [JRSelectedView selectedView];
 	[self.view addSubview:self.bottomBar];
 	
 	/// 滑动手势
@@ -79,18 +78,14 @@
 																		  action:@selector(tapAct:)];
 	tap.maximumNumberOfTouches = 1;
 	[self.view addGestureRecognizer:tap];
-	
 	self.tap = tap;
 	
 	/// 选中集合
 	self.backPathArray = [NSMutableArray array];
-	
-	
 	UIBarButtonItem *finish = [[UIBarButtonItem alloc] initWithTitle:@"取消"
 															   style:UIBarButtonItemStylePlain
 															  target:self
 															  action:@selector(finishAction)];
-	
 	self.navigationItem.rightBarButtonItem = finish;
 }
 
@@ -216,6 +211,7 @@
 	for (NSIndexPath *path in sub) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = !self.selectStatus;
+		cell.asset.isSelected = !self.selectStatus;
 		[self selectAsset:path asset:cell.asset isSelected:cell.isSelected];
 		[self.backPathArray removeObject:path];
 	}
@@ -232,6 +228,7 @@
 	for (NSIndexPath *path in self.backPathArray) {
 		JRImageCell *cell = (JRImageCell *)[self.collectionView cellForItemAtIndexPath:path];
 		cell.isSelected = self.selectStatus;
+		cell.asset.isSelected = cell.isSelected;
 		[self selectAsset:path asset:cell.asset isSelected:cell.isSelected];
 	}
 }
@@ -325,7 +322,14 @@
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;
 
-	self.title = album.name;
+	/// 标题
+	self.title = [NSString stringWithFormat:@"%@(%zd)", album.name, album.count];
+	
+	///
+	if (album.assetList) {
+		[self.collectionView reloadData];
+		return;
+	}
 	
 	///
 	NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:album.count];
@@ -357,7 +361,6 @@
 
 	return _layout;
 }
-
 
 /// 完成操作
 - (void)finishAction {
