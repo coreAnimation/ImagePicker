@@ -15,6 +15,10 @@
 
 #define Screen_w [UIScreen mainScreen].bounds.size.width
 
+#define Nav_h 64
+
+#define TabBar_h 49
+
 
 #define Sele_Bar_h 40
 

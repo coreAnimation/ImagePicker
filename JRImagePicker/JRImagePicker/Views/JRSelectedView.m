@@ -88,22 +88,12 @@
 	}
 }
 
+/// 操作
 - (void)throughAction:(UIButton *)sender {
-	switch (sender.tag) {
-		case 1:
-			NSLog(@"-----1");
-			break;
-		case 2:
-			NSLog(@"-----2");
-			break;
-		case 3:
-			NSLog(@"-----3");
-			break;
-		case 4:
-			NSLog(@"-----4");
-			break;
-		default:
-			break;
+	
+	/// 1:预览, 2:编辑, 3:原图, 4:完成
+	if ([self.delegate respondsToSelector:@selector(selectedViewDidClicked:)]) {
+		[self.delegate selectedViewDidClicked:sender];
 	}
 }
 

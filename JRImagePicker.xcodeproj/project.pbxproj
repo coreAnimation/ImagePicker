@@ -24,6 +24,8 @@
 		3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3AE20245BD00087F377 /* JRTestViewController.m */; };
 		3498B3B620246FE10087F377 /* JRAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B520246FE10087F377 /* JRAlbum.m */; };
 		3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3498B3B8202470640087F377 /* JRAlbumManager.m */; };
+		34ADBF7E20453FC200979D28 /* JRBrowerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ADBF7D20453FC200979D28 /* JRBrowerHeaderView.m */; };
+		34ADBF8120453FCF00979D28 /* JRBrowerBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ADBF8020453FCF00979D28 /* JRBrowerBottomView.m */; };
 		34B82FC32028400400598767 /* JRImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC22028400400598767 /* JRImageCell.m */; };
 		34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,10 @@
 		3498B3B520246FE10087F377 /* JRAlbum.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbum.m; sourceTree = "<group>"; };
 		3498B3B7202470640087F377 /* JRAlbumManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRAlbumManager.h; sourceTree = "<group>"; };
 		3498B3B8202470640087F377 /* JRAlbumManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRAlbumManager.m; sourceTree = "<group>"; };
+		34ADBF7C20453FC200979D28 /* JRBrowerHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRBrowerHeaderView.h; sourceTree = "<group>"; };
+		34ADBF7D20453FC200979D28 /* JRBrowerHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRBrowerHeaderView.m; sourceTree = "<group>"; };
+		34ADBF7F20453FCF00979D28 /* JRBrowerBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRBrowerBottomView.h; sourceTree = "<group>"; };
+		34ADBF8020453FCF00979D28 /* JRBrowerBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRBrowerBottomView.m; sourceTree = "<group>"; };
 		34B82FC0202839F900598767 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		34B82FC12028400400598767 /* JRImageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageCell.h; sourceTree = "<group>"; };
 		34B82FC22028400400598767 /* JRImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageCell.m; sourceTree = "<group>"; };
@@ -91,8 +97,6 @@
 				3498B3AB20245B500087F377 /* JRImagePickerController.m */,
 				307EA5C0203D18CC00C87F9E /* JRImageListController.h */,
 				307EA5C1203D18CC00C87F9E /* JRImageListController.m */,
-				345D420E204501C900175239 /* JRBrowerController.h */,
-				345D420F204501C900175239 /* JRBrowerController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,8 +123,6 @@
 				342025A3202C002400571A8F /* JRSelectedButton.m */,
 				343ADB7C203FF36A0061D3CC /* JRSelectedView.h */,
 				343ADB7D203FF36A0061D3CC /* JRSelectedView.m */,
-				345D4211204504C600175239 /* JRBrowerCell.h */,
-				345D4212204504C600175239 /* JRBrowerCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				34B82FC0202839F900598767 /* Header.h */,
+				34ADBF7920453F8B00979D28 /* BrowerModule */,
 				304E4F31202A0C8F007A0517 /* Controllers */,
 				304E4F34202A0CBB007A0517 /* Extension */,
 				304E4F33202A0CA2007A0517 /* Views */,
@@ -212,6 +215,37 @@
 				3498B3B1202460920087F377 /* jr_PHAsset.h */,
 			);
 			path = document;
+			sourceTree = "<group>";
+		};
+		34ADBF7920453F8B00979D28 /* BrowerModule */ = {
+			isa = PBXGroup;
+			children = (
+				34ADBF7B20453FA400979D28 /* Views */,
+				34ADBF7A20453F9F00979D28 /* Controllers */,
+			);
+			path = BrowerModule;
+			sourceTree = "<group>";
+		};
+		34ADBF7A20453F9F00979D28 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				345D420E204501C900175239 /* JRBrowerController.h */,
+				345D420F204501C900175239 /* JRBrowerController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		34ADBF7B20453FA400979D28 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				345D4211204504C600175239 /* JRBrowerCell.h */,
+				345D4212204504C600175239 /* JRBrowerCell.m */,
+				34ADBF7C20453FC200979D28 /* JRBrowerHeaderView.h */,
+				34ADBF7D20453FC200979D28 /* JRBrowerHeaderView.m */,
+				34ADBF7F20453FCF00979D28 /* JRBrowerBottomView.h */,
+				34ADBF8020453FCF00979D28 /* JRBrowerBottomView.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,11 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34ADBF8120453FCF00979D28 /* JRBrowerBottomView.m in Sources */,
 				3498B3B9202470640087F377 /* JRAlbumManager.m in Sources */,
 				3054FB271FDBA06C00FC110A /* ViewController.m in Sources */,
 				3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */,
 				3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */,
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
+				34ADBF7E20453FC200979D28 /* JRBrowerHeaderView.m in Sources */,
 				303ACFCF202A2776002842E3 /* JRCollectionView.m in Sources */,
 				345D4213204504C600175239 /* JRBrowerCell.m in Sources */,
 				342025A4202C002400571A8F /* JRSelectedButton.m in Sources */,

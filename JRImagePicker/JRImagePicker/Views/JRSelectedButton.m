@@ -43,7 +43,7 @@
 	self.selectLayer.backgroundColor = [UIColor blueColor].CGColor;
 	self.selectLayer.position = noSelectLayer.position;//CGPointMake(23 * 0.5, 23 * 0.5);
 	self.selectLayer.cornerRadius	= 11;
-	self.bounds = CGRectMake(0, 0, 0, 0);
+//	self.bounds = CGRectMake(0, 0, 0, 0);
 	[self.layer addSublayer:self.selectLayer];
 	
 	
@@ -58,15 +58,7 @@
 	[super setSelected:selected];
 
 	if (selected) {
-		
-//		[CATransaction begin];
-//
-//		[CATransaction setAnimationDuration:0.3];
-//		self.selectLayer.bounds = CGRectMake(0, 0, 26, 26);
-//		self.selectLayer.cornerRadius	= 13;
-//
-//		[CATransaction commit];
-	
+
 		[CATransaction begin];
 		[CATransaction setAnimationDuration:0.1];
 		self.selectLayer.bounds = CGRectMake(0, 0, 22, 22);

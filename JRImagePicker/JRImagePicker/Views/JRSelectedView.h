@@ -8,7 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol JRSelectedViewDelegate <NSObject>
+
+/**
+ 点击底部操作按钮
+ @param sender 按钮
+ */
+- (void)selectedViewDidClicked:(UIButton *)sender;
+
+@end
+
+
 @interface JRSelectedView : UIView
+
+/// 代理对象
+@property (nonatomic, weak) id<JRSelectedViewDelegate> delegate;
 
 /// 创建底部选择控件
 + (instancetype)selectedView;

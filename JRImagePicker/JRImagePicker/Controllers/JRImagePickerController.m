@@ -19,7 +19,7 @@
 #import "JRBrowerController.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
-										JRImageCellDelegate>
+										JRImageCellDelegate, JRSelectedViewDelegate>
 
 /// 图片列表
 @property (nonatomic, strong) JRCollectionView	*collectionView;
@@ -72,6 +72,7 @@
 	
 	/// 底部操作调
 	self.bottomBar = [JRSelectedView selectedView];
+	self.bottomBar.delegate = self;
 	[self.view addSubview:self.bottomBar];
 	
 	/// 滑动手势
@@ -278,6 +279,34 @@
 	}
 }
 
+#pragma mark - JRSelectedViewDelegate
+- (void)selectedViewDidClicked:(UIButton *)sender {
+	switch (sender.tag) {
+			/// 预览图片
+		case 1: {
+			JRBrowerController *browerVC = [JRBrowerController browerController:[JRAlbumManager sharedAlbumManager].selectedItem
+																   currentIndex:0];
+			[self.navigationController pushViewController:browerVC animated:YES];
+		}
+			
+			break;
+		case 2:
+			NSLog(@"-----2");
+			break;
+		case 3:
+			NSLog(@"-----3");
+			break;
+			/// 完成
+		case 4:
+			[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+			break;
+		default:
+			break;
+	}
+}
+
+#pragma makr -
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 	return self.album.assetList.count;
 }
@@ -297,9 +326,7 @@
 
 /// 点击图片
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-	
-	NSLog(@"-- 点击图片: %zd", indexPath.row);
-	
+
 	JRBrowerController *browerVC = [JRBrowerController browerController:self.album.assetList currentIndex:indexPath.row];
 	[self.navigationController pushViewController:browerVC animated:YES];
 }

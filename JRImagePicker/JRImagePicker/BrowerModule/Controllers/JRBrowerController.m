@@ -10,17 +10,23 @@
 #import "JRBrowerCell.h"
 #import "JRAsset.h"
 #import "Header.h"
+#import "JRBrowerBottomView.h"
+#import "JRBrowerHeaderView.h"
 
 @interface JRBrowerController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
 ///
-@property (nonatomic, strong) UICollectionView	*collectionView;
+@property (nonatomic, strong) UICollectionView			*collectionView;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout	*flowLayout;
 
-@property (nonatomic, strong) NSArray<JRAsset *>	*assetList;
+@property (nonatomic, strong) NSArray<JRAsset *>		*assetList;
 
-@property (nonatomic, assign) NSInteger				index;
+@property (nonatomic, assign) NSInteger					index;
+
+@property (nonatomic, strong) JRBrowerBottomView		*bottomView;
+
+@property (nonatomic, strong) JRBrowerHeaderView		*headerView;
 
 @end
 
@@ -40,12 +46,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+#pragma mark -
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
 	
-//	[self setupView];
+	[self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)backAction {
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setupView {
 	
+	///
 	self.collectionView = ({
 		CGRect frame = CGRectMake(-15, 0, Screen_w + 30, Screen_h);
 		UICollectionView *collView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:self.flowLayout];
@@ -56,10 +78,22 @@
 		[collView registerClass:[JRBrowerCell class] forCellWithReuseIdentifier:@"item"];
 		collView;
 	});
-	
-	
+
 	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.index inSection:0];
 	[self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+	
+	///
+	self.headerView = [JRBrowerHeaderView browerHeaderView];
+	[self.headerView.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:self.headerView];
+	
+	///
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAct)];
+	[self.collectionView addGestureRecognizer:tap];
+}
+
+- (void)tapAct {
+	self.headerView.appearance = !self.headerView.appearance;
 }
 
 ///
@@ -75,6 +109,15 @@
 	return cell;
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	
+	CGPoint point = CGPointMake(scrollView.contentOffset.x + self.collectionView.frame.size.width * 0.5,
+								self.collectionView.frame.size.height * 0.5);
+	NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+	
+	JRAsset *asset = self.assetList[indexPath.row];
+	self.headerView.asset = asset;
+}
 
 - (UICollectionViewFlowLayout *)flowLayout {
 	if (_flowLayout) {
