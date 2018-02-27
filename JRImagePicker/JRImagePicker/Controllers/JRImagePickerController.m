@@ -16,6 +16,7 @@
 #import "JRAlbumManager.h"
 #import "JRCollectionView.h"
 #import "JRSelectedView.h"
+#import "JRBrowerController.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
 										JRImageCellDelegate>
@@ -298,8 +299,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 	
 	NSLog(@"-- 点击图片: %zd", indexPath.row);
-//	JRImageCell *cell = (JRImageCell *)[collectionView cellForItemAtIndexPath:indexPath];
-//	cell.isSelected = !cell.isSelected;
+	
+	JRBrowerController *browerVC = [JRBrowerController browerController:self.album.assetList currentIndex:indexPath.row];
+	[self.navigationController pushViewController:browerVC animated:YES];
 }
 
 #pragma mark - JRImageCellDelegate

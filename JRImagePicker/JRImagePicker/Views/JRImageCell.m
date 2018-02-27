@@ -112,33 +112,10 @@
 // 设置多媒体资源
 - (void)setAsset:(JRAsset *)asset {
 	_asset = asset;
-	
-	PHAsset *phAsset = asset.asset;
-	
-	CGFloat sizeW = (Screen_w - Margin_w * 5) / (CGFloat)4 * [UIScreen mainScreen].scale;
-	CGFloat aspectRatio = phAsset.pixelHeight / (CGFloat)phAsset.pixelWidth;
-	
-	if (asset) {
-		
-		CGSize imageSize = CGSizeMake(sizeW, sizeW);
-		/// 宽图片
-		if (asset.pixelWidth > asset.pixelHeight) {
-			CGFloat w = sizeW / aspectRatio;
-			imageSize = CGSizeMake(w, sizeW);
-		}
-		/// 高图片
-		else {
-			CGFloat h = sizeW * aspectRatio;
-			imageSize = CGSizeMake(sizeW, h);
-		}
 
-		/// 获取图片
-		[PHImageManager jr_imageForAsset:phAsset
-							  targetSize:imageSize
-							  accomplish:^(UIImage *result, NSDictionary *info) {
-								  if (result) { self.imgView.image = result; }
-		}];
-	}
+	[asset setThumbImageAccomplist:^(UIImage *result, NSDictionary *info) {
+		if (result) { self.imgView.image = result; }
+	}];
 	
 	/// 设置选择状态
 	self.isSelected = asset.isSelected;

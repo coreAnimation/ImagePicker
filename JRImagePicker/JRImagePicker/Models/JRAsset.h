@@ -36,4 +36,11 @@
  */
 @property (nonatomic, strong) NSData	*sourceData;
 
+
+/// 获取缩略图
+- (void)setThumbImageAccomplist:(void (^)(UIImage *result, NSDictionary *info))accomplish;
+
+/// 获取原图
+- (void)getSoucreImage:(void (^)(UIImage *result, NSDictionary *info))accomplish;
+
 @end
