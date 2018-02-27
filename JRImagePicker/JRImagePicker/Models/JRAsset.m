@@ -75,7 +75,6 @@
 							  targetSize:imageSize
 							  accomplish:^(UIImage *result, NSDictionary *info) {
 								  accomplish(result, info);
-								  NSLog(@"======= %@", [NSThread currentThread]);
 							  }];
 	}
 }

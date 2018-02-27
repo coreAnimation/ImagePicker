@@ -319,6 +319,9 @@
 			[[JRAlbumManager sharedAlbumManager].selectedItem removeObject:asset];
 		}
 	}
+	
+	/// 
+	[self.bottomBar setSelectedNumber];
 }
 
 - (void)setAlbum:(JRAlbum *)album {

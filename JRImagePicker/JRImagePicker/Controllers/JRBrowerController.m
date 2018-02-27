@@ -71,13 +71,7 @@
 	
 	JRBrowerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item" forIndexPath:indexPath];
 	cell.asset = self.assetList[indexPath.row];
-	
-//	if (indexPath.row % 2 == 0) {
-//		cell.backgroundColor = [UIColor redColor];
-//	} else {
-//		cell.backgroundColor = [UIColor greenColor];
-//	}
-	
+
 	return cell;
 }
 

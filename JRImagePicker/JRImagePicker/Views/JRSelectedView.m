@@ -8,6 +8,7 @@
 
 #import "JRSelectedView.h"
 #import "Header.h"
+#import "JRAlbumManager.h"
 
 @interface JRSelectedView ()
 
@@ -72,6 +73,19 @@
 	self.accomplishBtn.tag = 4;
 	[self.accomplishBtn addTarget:self action:@selector(throughAction:) forControlEvents:UIControlEventTouchUpInside];
 	
+}
+
+/// 设置选择图片数量
+- (void)setSelectedNumber {
+	
+	NSInteger count = [JRAlbumManager sharedAlbumManager].selectedItem.count;
+	
+	if (count == 0) {
+		[self.accomplishBtn setTitle:@"完成" forState:UIControlStateNormal];
+	} else {
+		NSString *title = [NSString stringWithFormat:@"(%zd)完成", count];
+		[self.accomplishBtn setTitle:title forState:UIControlStateNormal];
+	}
 }
 
 - (void)throughAction:(UIButton *)sender {

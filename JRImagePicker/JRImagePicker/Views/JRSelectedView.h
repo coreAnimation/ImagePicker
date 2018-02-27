@@ -10,6 +10,10 @@
 
 @interface JRSelectedView : UIView
 
+/// 创建底部选择控件
 + (instancetype)selectedView;
+
+/// 设置选择数量
+- (void)setSelectedNumber;
 
 @end
