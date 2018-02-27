@@ -11,6 +11,7 @@
 
 @implementation PHImageManager (JRExtension)
 
+///
 + (PHImageRequestID)jr_imageForAsset:(PHAsset *)asset
 						  targetSize:(CGSize)targetSize
 						  accomplish:(void (^)(UIImage *result, NSDictionary *info))accomplish {

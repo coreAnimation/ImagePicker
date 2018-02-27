@@ -9,6 +9,7 @@
 #import "JRBrowerController.h"
 #import "JRBrowerCell.h"
 #import "JRAsset.h"
+#import "Header.h"
 
 @interface JRBrowerController () <UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -46,7 +47,8 @@
 - (void)setupView {
 	
 	self.collectionView = ({
-		UICollectionView *collView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:self.flowLayout];
+		CGRect frame = CGRectMake(-15, 0, Screen_w + 30, Screen_h);
+		UICollectionView *collView = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:self.flowLayout];
 		collView.delegate 	= self;
 		collView.dataSource = self;
 		collView.pagingEnabled = YES;
@@ -68,13 +70,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	
 	JRBrowerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item" forIndexPath:indexPath];
+	cell.asset = self.assetList[indexPath.row];
 	
 //	if (indexPath.row % 2 == 0) {
 //		cell.backgroundColor = [UIColor redColor];
 //	} else {
 //		cell.backgroundColor = [UIColor greenColor];
 //	}
-	cell.asset = self.assetList[indexPath.row];
 	
 	return cell;
 }
@@ -86,7 +88,7 @@
 	}
 	
 	_flowLayout = [UICollectionViewFlowLayout new];
-	_flowLayout.itemSize = self.view.bounds.size;
+	_flowLayout.itemSize = CGSizeMake(Screen_w + 30, Screen_h);
 	_flowLayout.minimumLineSpacing = 0;
 	_flowLayout.minimumInteritemSpacing = 0;
 	_flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

@@ -50,7 +50,7 @@
 			
 			CGFloat y = (Screen_h - height) * 0.5;
 			
-			self.imgView.frame = CGRectMake(0, y, width, height);
+			self.imgView.frame = CGRectMake(15, y, width, height);
 			
 			self.imgView.image = result;
 		}
