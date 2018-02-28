@@ -12,6 +12,7 @@
 #import "JRAsset.h"
 #import "JRSelectedButton.h"
 #import "PHImageManager+JRExtension.h"
+#import "JRAlbumManager.h"
 
 @interface JRImageCell ()
 
@@ -90,13 +91,6 @@
 	self.asset.isSelected = isSelected;
 	
 	self.selButton.selected = isSelected;
-	
-//	if (isSelected) {
-//		/// 添加
-//		NSLog(@"添加 --- %zd", self.indexPath.row);
-//	} else {
-//		NSLog(@"删除 --- %zd", self.indexPath.row);
-//	}
 }
 
 - (void)setTmpSelected:(BOOL)tmpSelected {
@@ -119,6 +113,11 @@
 	
 	/// 设置选择状态
 	self.isSelected = asset.isSelected;
+	
+	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
+	if (index != NSNotFound) {
+		self.selButton.number = index + 1;
+	}
 }
 
 

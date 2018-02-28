@@ -10,4 +10,6 @@
 
 @interface JRSelectedButton : UIButton
 
+@property (nonatomic, assign) NSInteger		number;
+
 @end

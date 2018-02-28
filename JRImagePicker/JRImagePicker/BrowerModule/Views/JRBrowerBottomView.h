@@ -10,4 +10,16 @@
 
 @interface JRBrowerBottomView : UIView
 
+/**
+ 是否隐藏
+ */
+@property (nonatomic, assign) BOOL	appearance;
+
+/**
+ 获取底部选择条
+
+ @return 底部选择条
+ */
++ (instancetype)browerBottomView;
+
 @end

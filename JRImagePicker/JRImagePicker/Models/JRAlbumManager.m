@@ -26,6 +26,7 @@
 - (instancetype)init {
 	self = [super init];
 	self.selectedItem = [NSMutableArray array];
+	self.selectedIndexPaths = [NSMutableArray array];
 	return self;
 }
 

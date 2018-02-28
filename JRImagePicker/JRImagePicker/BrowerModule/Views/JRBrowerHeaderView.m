@@ -75,6 +75,11 @@
 	
 	self.selectedBtn.selected = asset.isSelected;
 
+	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
+	if (index != NSNotFound) {
+		self.selectedBtn.number = index + 1;
+	}
+	
 	NSLog(@"--------- %zd", [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset]);
 }
 

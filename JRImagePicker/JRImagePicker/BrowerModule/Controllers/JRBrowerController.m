@@ -88,12 +88,19 @@
 	[self.view addSubview:self.headerView];
 	
 	///
+	self.bottomView = [JRBrowerBottomView browerBottomView];
+//	[self.headerView.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+	[self.view addSubview:self.bottomView];
+	
+	
+	///
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAct)];
 	[self.collectionView addGestureRecognizer:tap];
 }
 
 - (void)tapAct {
 	self.headerView.appearance = !self.headerView.appearance;
+	self.bottomView.appearance = !self.headerView.appearance;
 }
 
 ///

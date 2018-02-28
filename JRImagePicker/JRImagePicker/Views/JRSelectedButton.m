@@ -46,7 +46,6 @@
 //	self.bounds = CGRectMake(0, 0, 0, 0);
 	[self.layer addSublayer:self.selectLayer];
 	
-	
 //	self.selectLayer.string = @"1";
 	self.selectLayer.fontSize = 18;
 	self.selectLayer.alignmentMode = kCAAlignmentCenter;
@@ -71,6 +70,16 @@
 		self.selectLayer.bounds = CGRectZero;
 		[CATransaction commit];
 	}
+	
+}
+
+- (void)setNumber:(NSInteger)number {
+	_number = number;
+
+	[CATransaction begin];
+	[CATransaction setDisableActions:NO];
+	self.selectLayer.string = [NSString stringWithFormat:@"%zd", number];
+	[CATransaction commit];
 	
 }
 

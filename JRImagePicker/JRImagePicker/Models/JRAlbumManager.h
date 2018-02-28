@@ -29,6 +29,8 @@
  */
 @property (nonatomic, strong) NSMutableArray<JRAsset *>	*selectedItem;
 
+@property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedIndexPaths;
+
 /**
  获取相册资源
  */

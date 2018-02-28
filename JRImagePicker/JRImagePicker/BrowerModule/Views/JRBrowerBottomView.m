@@ -7,15 +7,34 @@
 //
 
 #import "JRBrowerBottomView.h"
+#import "Header.h"
 
 @implementation JRBrowerBottomView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (instancetype)browerBottomView {
+	
+	CGRect frame = CGRectMake(0, Screen_h, Screen_w, TabBar_h);
+	JRBrowerBottomView *bottomView = [[JRBrowerBottomView alloc] initWithFrame:frame];
+	
+	[bottomView setupView];
+	
+	return bottomView;
 }
-*/
+
+- (void)setupView {
+	self.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)setAppearance:(BOOL)appearance {
+	_appearance = appearance;
+	
+	CGRect frame = CGRectMake(0, Screen_h, Screen_w, TabBar_h);
+	if (!_appearance) {
+		frame = CGRectMake(0, Screen_h - TabBar_h, Screen_w, TabBar_h);
+	}
+	[UIView animateWithDuration:0.2 animations:^{
+		self.frame = frame;
+	}];
+}
 
 @end
