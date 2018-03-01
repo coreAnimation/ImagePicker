@@ -340,21 +340,22 @@
 		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem addObject:asset];
 			[[JRAlbumManager sharedAlbumManager].selectedIndexPaths addObject:indexPath];
+			/// 刷新序号
+			[self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 		}
 	} else {
 		/// 删除操作
 		if ([[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem removeObject:asset];
 			[[JRAlbumManager sharedAlbumManager].selectedIndexPaths removeObject:indexPath];
+			/// 刷新选择
+			[self.collectionView reloadItemsAtIndexPaths:[JRAlbumManager sharedAlbumManager].selectedIndexPaths];
 		}
 	}
 	
 	/// 设置底部选择条数量
 	[self.bottomBar setSelectedNumber];
-	
-	/// 更新选择 序号
-	[self.collectionView reloadItemsAtIndexPaths:[JRAlbumManager sharedAlbumManager].selectedIndexPaths];
-	NSLog(@"===== %zd", [JRAlbumManager sharedAlbumManager].selectedIndexPaths.count);
+
 }
 
 - (void)setAlbum:(JRAlbum *)album {
