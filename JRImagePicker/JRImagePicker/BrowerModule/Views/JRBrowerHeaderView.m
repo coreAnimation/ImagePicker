@@ -79,8 +79,6 @@
 	if (index != NSNotFound) {
 		self.selectedBtn.number = index + 1;
 	}
-	
-	NSLog(@"--------- %zd", [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset]);
 }
 
 @end

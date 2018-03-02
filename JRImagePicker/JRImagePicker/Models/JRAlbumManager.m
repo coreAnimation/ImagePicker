@@ -60,6 +60,7 @@
 		album.name 			= albumName;
 		album.count 		= albumNumb;
 		album.fetchResult 	= fetchResult;
+		album.indexPathList = [NSMutableArray array];
 		if (albumNumb > 0) {
 			[tmpAlbum addObject:album];
 		}

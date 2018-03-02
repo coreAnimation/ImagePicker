@@ -8,8 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRAsset;
+@class JRImageListController;
+
+@protocol JRImageListControllerDelegate
+
+- (void)imageListController:(JRImageListController *)imageListControler
+		finishPickingPhotos:(NSArray<JRAsset *> *)assets
+	ifSelectedOriginalPhoto:(BOOL)isSelectOriginalPhoto;
+
+
+@end
+
+
+/// 图片列表
 @interface JRImageListController : UIViewController
 
 + (UINavigationController *)imageListController;
+
+/**
+ 代理对象
+ */
+@property (nonatomic, weak) id<JRImageListControllerDelegate>	delegate;
 
 @end

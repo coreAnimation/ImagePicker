@@ -38,6 +38,11 @@
  */
 @property (nonatomic, strong) NSMutableArray<JRAsset *>		*assetList;
 
+/**
+ 刷新列表
+ */
+@property (nonatomic, strong) NSMutableArray<NSIndexPath *>	*indexPathList;
+
 
 /**
  相册索引

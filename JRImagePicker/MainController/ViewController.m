@@ -37,9 +37,9 @@
 
 /// 打开相册
 - (void)openPicker {
+	
 	UINavigationController *list = [JRImageListController imageListController];
 	[self presentViewController:list animated:YES completion:nil];
-//	[self.navigationController pushViewController:list animated:YES];
 }
 
 @end

@@ -339,7 +339,8 @@
 		/// 选中操作
 		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem addObject:asset];
-			[[JRAlbumManager sharedAlbumManager].selectedIndexPaths addObject:indexPath];
+
+			[self.album.indexPathList addObject:indexPath];
 			/// 刷新序号
 			[self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 		}
@@ -347,9 +348,10 @@
 		/// 删除操作
 		if ([[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
 			[[JRAlbumManager sharedAlbumManager].selectedItem removeObject:asset];
-			[[JRAlbumManager sharedAlbumManager].selectedIndexPaths removeObject:indexPath];
+
+			[self.album.indexPathList removeObject:indexPath];
 			/// 刷新选择
-			[self.collectionView reloadItemsAtIndexPaths:[JRAlbumManager sharedAlbumManager].selectedIndexPaths];
+			[self.collectionView reloadItemsAtIndexPaths:self.album.indexPathList];
 		}
 	}
 	
@@ -358,10 +360,11 @@
 
 }
 
+/// 设置选择的相册
 - (void)setAlbum:(JRAlbum *)album {
 	_album = album;
 
-	/// 标题
+	/// 标题 
 	self.title = [NSString stringWithFormat:@"%@(%zd)", album.name, album.count];
 	
 	///
