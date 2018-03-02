@@ -114,10 +114,39 @@
 	/// 设置选择状态
 	self.isSelected = asset.isSelected;
 	
-	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
-	if (index != NSNotFound) {
-		self.selButton.number = index + 1;
+
+	for (NSInteger i=0; i<[JRAlbumManager sharedAlbumManager].selectedItem.count; i++) {
+		JRAsset *myAsset = [JRAlbumManager sharedAlbumManager].selectedItem[i];
+		
+		NSLog(@"%@ = %@", myAsset.asset.localIdentifier, asset.asset.localIdentifier);
+		
+		if ([myAsset.asset.localIdentifier isEqualToString:asset.asset.localIdentifier]) {
+			
+			self.isSelected = YES;
+			self.selButton.number = i + 1;
+			break;
+		}
 	}
+	
+	
+//	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
+//	if (index != NSNotFound) {
+//		self.selButton.number = index + 1;
+//	} else {
+//
+//		for (NSInteger i=0; i<[JRAlbumManager sharedAlbumManager].selectedItem.count; i++) {
+//			JRAsset *myAsset = [JRAlbumManager sharedAlbumManager].selectedItem[i];
+//
+//			NSLog(@"%@ = %@", myAsset.asset.localIdentifier, asset.asset.localIdentifier);
+//
+//			if ([myAsset.asset.localIdentifier isEqualToString:asset.asset.localIdentifier]) {
+//
+//				self.isSelected = YES;
+//				self.selButton.number = i + 1;
+//				break;
+//			}
+//		}
+//	}
 }
 
 

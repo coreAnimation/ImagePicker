@@ -89,6 +89,13 @@
 															  target:self
 															  action:@selector(finishAction)];
 	self.navigationItem.rightBarButtonItem = finish;
+	
+	
+	///
+	if (self.album.indexPathList.count > 0) {
+		NSIndexPath *indexPath = self.album.indexPathList.lastObject;
+		[self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionTop animated:YES];
+	}
 }
 
 /// 自动向下滑动
@@ -334,6 +341,10 @@
 #pragma mark - JRImageCellDelegate
 /// 选择图片回调
 - (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
+	
+	NSLog(@"---- %@", asset.asset);
+	NSLog(@"==== %@", asset.asset.localIdentifier);
+	NSLog(@"=========================================");
 	
 	if (selected) {
 		/// 选中操作

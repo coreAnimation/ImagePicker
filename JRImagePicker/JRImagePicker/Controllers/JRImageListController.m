@@ -95,4 +95,11 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+///
+- (void)dealloc {
+	///
+	[[JRAlbumManager sharedAlbumManager].selectedItem removeAllObjects];
+}
+
 @end

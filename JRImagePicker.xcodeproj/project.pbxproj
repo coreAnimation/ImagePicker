@@ -28,6 +28,7 @@
 		34ADBF8120453FCF00979D28 /* JRBrowerBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 34ADBF8020453FCF00979D28 /* JRBrowerBottomView.m */; };
 		34B82FC32028400400598767 /* JRImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC22028400400598767 /* JRImageCell.m */; };
 		34B82FC62028585C00598767 /* PHImageManager+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */; };
+		34FD03A1204951450056AFA7 /* JRImageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 34FD03A0204951450056AFA7 /* JRImageListCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +76,8 @@
 		34B82FC22028400400598767 /* JRImageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageCell.m; sourceTree = "<group>"; };
 		34B82FC42028585C00598767 /* PHImageManager+JRExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PHImageManager+JRExtension.h"; sourceTree = "<group>"; };
 		34B82FC52028585C00598767 /* PHImageManager+JRExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PHImageManager+JRExtension.m"; sourceTree = "<group>"; };
+		34FD039F204951450056AFA7 /* JRImageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageListCell.h; sourceTree = "<group>"; };
+		34FD03A0204951450056AFA7 /* JRImageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageListCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,7 @@
 		3498B3A920245B4A0087F377 /* JRImagePicker */ = {
 			isa = PBXGroup;
 			children = (
+				34FD039E204951330056AFA7 /* Cells */,
 				34B82FC0202839F900598767 /* Header.h */,
 				34ADBF7920453F8B00979D28 /* BrowerModule */,
 				304E4F31202A0C8F007A0517 /* Controllers */,
@@ -246,6 +250,15 @@
 				34ADBF8020453FCF00979D28 /* JRBrowerBottomView.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		34FD039E204951330056AFA7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				34FD039F204951450056AFA7 /* JRImageListCell.h */,
+				34FD03A0204951450056AFA7 /* JRImageListCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +336,7 @@
 				3054FB271FDBA06C00FC110A /* ViewController.m in Sources */,
 				3498B3AC20245B500087F377 /* JRImagePickerController.m in Sources */,
 				3498B3AF20245BD00087F377 /* JRTestViewController.m in Sources */,
+				34FD03A1204951450056AFA7 /* JRImageListCell.m in Sources */,
 				3054FB321FDBA06C00FC110A /* main.m in Sources */,
 				34ADBF7E20453FC200979D28 /* JRBrowerHeaderView.m in Sources */,
 				303ACFCF202A2776002842E3 /* JRCollectionView.m in Sources */,
