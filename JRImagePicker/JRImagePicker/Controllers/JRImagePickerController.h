@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JRImageListController.h"
 
 @class JRAlbum;
 
@@ -16,5 +17,10 @@
  相册
  */
 @property (nonatomic, strong) JRAlbum	*album;
+
+/**
+ 代理对象
+ */
+@property (nonatomic, weak) id<JRImageListControllerDelegate>	delegate;
 
 @end

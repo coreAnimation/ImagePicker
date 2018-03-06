@@ -86,6 +86,7 @@
 	JRImagePickerController *vc = [JRImagePickerController new];
 	JRAlbum *model = self.dataList[indexPath.row];
 	vc.album = model;
+	vc.delegate = self.delegate;
 	[self.navigationController pushViewController:vc animated:YES];
 
 }

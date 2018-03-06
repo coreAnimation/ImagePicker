@@ -11,12 +11,11 @@
 @class JRAsset;
 @class JRImageListController;
 
-@protocol JRImageListControllerDelegate
+@protocol JRImageListControllerDelegate <NSObject>
 
 - (void)imageListController:(JRImageListController *)imageListControler
 		finishPickingPhotos:(NSArray<JRAsset *> *)assets
 	ifSelectedOriginalPhoto:(BOOL)isSelectOriginalPhoto;
-
 
 @end
 

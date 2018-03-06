@@ -13,8 +13,9 @@
 #import "JRAlbum.h"
 #import "JRImageListController.h"
 #import "Header.h"
+#import "JRPickerViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <JRImageListControllerDelegate>
 
 @end
 
@@ -37,9 +38,19 @@
 
 /// 打开相册
 - (void)openPicker {
+
+	JRPickerViewController *picVC = [JRPickerViewController pickerViewController];
+	picVC.delegate = self;
+	[self presentViewController:picVC animated:YES completion:nil];
 	
-	UINavigationController *list = [JRImageListController imageListController];
-	[self presentViewController:list animated:YES completion:nil];
+//	UINavigationController *list = [JRImageListController imageListController];
+//	[self presentViewController:list animated:YES completion:nil];
+}
+
+- (void)imageListController:(JRImageListController *)imageListControler
+		finishPickingPhotos:(NSArray<JRAsset *> *)assets
+	ifSelectedOriginalPhoto:(BOOL)isSelectOriginalPhoto {
+	NSLog(@"======= %zd", assets.count);
 }
 
 @end

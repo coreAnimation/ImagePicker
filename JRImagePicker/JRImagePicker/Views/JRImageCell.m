@@ -112,7 +112,7 @@
 	}];
 	
 	/// 设置选择状态
-	self.isSelected = asset.isSelected;
+	self.isSelected = NO;//asset.isSelected;
 	
 
 	for (NSInteger i=0; i<[JRAlbumManager sharedAlbumManager].selectedItem.count; i++) {

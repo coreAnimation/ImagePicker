@@ -304,8 +304,14 @@
 			NSLog(@"-----3");
 			break;
 			/// 完成
-		case 4:
+		case 4: {
+			if ([self.delegate respondsToSelector:@selector(imageListController:finishPickingPhotos:ifSelectedOriginalPhoto:)]) {
+				[self.delegate imageListController:nil
+							   finishPickingPhotos:[JRAlbumManager sharedAlbumManager].selectedItem
+						   ifSelectedOriginalPhoto:YES];
+			}
 			[self.navigationController dismissViewControllerAnimated:YES completion:nil];
+		}
 			break;
 		default:
 			break;
@@ -323,6 +329,26 @@
 	
 	JRImageCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item"
 																		   forIndexPath:indexPath];
+	
+	
+	//////
+	JRAsset *asset = self.album.assetList[indexPath.row];
+	
+	for (NSInteger i=0; i<[JRAlbumManager sharedAlbumManager].selectedItem.count; i++) {
+		JRAsset *myAsset = [JRAlbumManager sharedAlbumManager].selectedItem[i];
+		
+		if ([myAsset.asset.localIdentifier isEqualToString:asset.asset.localIdentifier]) {
+			
+			asset.isSelected = YES;
+			if (![self.album.indexPathList containsObject:indexPath]) {
+				[self.album.indexPathList addObject:indexPath];
+			}
+//			self.isSelected = YES;
+//			self.selButton.number = i + 1;
+			break;
+		}
+	}
+	
 	cell.backgroundColor = [UIColor redColor];
 	cell.asset 			 = self.album.assetList[indexPath.row];
 	cell.delegate 		 = self;
@@ -341,11 +367,7 @@
 #pragma mark - JRImageCellDelegate
 /// 选择图片回调
 - (void)selectAsset:(NSIndexPath *)indexPath asset:(JRAsset *)asset isSelected:(BOOL)selected {
-	
-	NSLog(@"---- %@", asset.asset);
-	NSLog(@"==== %@", asset.asset.localIdentifier);
-	NSLog(@"=========================================");
-	
+
 	if (selected) {
 		/// 选中操作
 		if (![[JRAlbumManager sharedAlbumManager].selectedItem containsObject:asset]) {
@@ -417,6 +439,7 @@
 
 /// 完成操作
 - (void)finishAction {
+	
 	[self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
