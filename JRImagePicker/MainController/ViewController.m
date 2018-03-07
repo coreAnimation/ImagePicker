@@ -49,6 +49,7 @@
 											 collectionViewLayout:self.layout];
 	self.collectionView.delegate = self;
 	self.collectionView.dataSource = self;
+	self.collectionView.backgroundColor = [UIColor whiteColor];
 	[self.view addSubview:self.collectionView];
 	[self.collectionView registerClass:[JRImageCell class] forCellWithReuseIdentifier:@"cc"];
 	
@@ -66,8 +67,6 @@
 	
 	return cell;
 }
-
-
 
 /// 打开相册
 - (void)openPicker {

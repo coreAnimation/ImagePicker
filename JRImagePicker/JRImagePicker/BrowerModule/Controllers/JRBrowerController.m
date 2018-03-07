@@ -13,7 +13,8 @@
 #import "JRBrowerBottomView.h"
 #import "JRBrowerHeaderView.h"
 
-@interface JRBrowerController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface JRBrowerController () <UICollectionViewDataSource, UICollectionViewDelegate,
+								JRBrowerHeaderViewDelegate>
 
 ///
 @property (nonatomic, strong) UICollectionView			*collectionView;
@@ -85,6 +86,7 @@
 	///
 	self.headerView = [JRBrowerHeaderView browerHeaderView];
 	[self.headerView.backBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+	self.headerView.delegate = self;
 	[self.view addSubview:self.headerView];
 	
 	///
@@ -96,6 +98,14 @@
 	///
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAct)];
 	[self.collectionView addGestureRecognizer:tap];
+}
+
+///
+- (void)selectedAsset:(JRAsset *)asset selected:(BOOL)isSelected {
+	if ([self.delegate respondsToSelector:@selector(selectAsset:isSelected:)]) {
+		[self.delegate selectAsset:asset isSelected:isSelected];
+	}
+	
 }
 
 - (void)tapAct {
@@ -139,6 +149,5 @@
 	
 	return _flowLayout;
 }
-
 
 @end

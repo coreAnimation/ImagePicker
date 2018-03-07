@@ -9,7 +9,21 @@
 #import <UIKit/UIKit.h>
 
 @class JRAsset;
+
+@protocol JRBrowerControllerDelegate <NSObject>
+
+/// 
+- (void)selectAsset:(JRAsset *)asset isSelected:(BOOL)selected;
+
+@end
+
+
 @interface JRBrowerController : UIViewController
+
+/**
+ 代理对象
+ */
+@property (nonatomic, weak) id<JRBrowerControllerDelegate>	delegate;
 
 + (instancetype)browerController:(NSArray<JRAsset *>*)assetList currentIndex:(NSInteger)index;
 

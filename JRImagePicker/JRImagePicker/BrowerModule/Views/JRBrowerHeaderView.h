@@ -9,6 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class JRAsset;
+@class JRSelectedButton;
+
+@protocol JRBrowerHeaderViewDelegate <NSObject>
+
+- (void)selectedAsset:(JRAsset *)asset selected:(BOOL)isSelected;
+
+@end
+
+
 @interface JRBrowerHeaderView : UIView
 
 /// 是否隐藏
@@ -18,6 +27,10 @@
 @property (nonatomic, strong) UIButton	*backBtn;
 
 @property (nonatomic, strong) JRAsset	*asset;
+
+@property (nonatomic, strong) JRSelectedButton	*selectedBtn;
+
+@property (nonatomic, weak) id<JRBrowerHeaderViewDelegate>	delegate;
 
 + (instancetype)browerHeaderView;
 

@@ -14,8 +14,6 @@
 
 @interface JRBrowerHeaderView ()
 
-@property (nonatomic, strong) JRSelectedButton	*selectedBtn;
-
 @end
 
 
@@ -52,6 +50,13 @@
 
 - (void)addAct:(UIButton *)sender {
 	sender.selected = !sender.selected;
+
+	//
+	self.asset.isSelected = sender.selected;
+	
+//	if ([self.delegate respondsToSelector:@selector(selectedAsset:selected:)]) {
+//		[self.delegate selectedAsset:self.asset selected:self.selectedBtn.selected];
+//	}
 }
 
 - (void)setAppearance:(BOOL)appearance {

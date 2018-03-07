@@ -19,7 +19,7 @@
 #import "JRBrowerController.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
-										JRImageCellDelegate, JRSelectedViewDelegate>
+										JRImageCellDelegate, JRSelectedViewDelegate, JRBrowerControllerDelegate>
 
 /// 图片列表
 @property (nonatomic, strong) JRCollectionView	*collectionView;
@@ -293,6 +293,7 @@
 		case 1: {
 			JRBrowerController *browerVC = [JRBrowerController browerController:[JRAlbumManager sharedAlbumManager].selectedItem
 																   currentIndex:0];
+			browerVC.delegate = self;
 			[self.navigationController pushViewController:browerVC animated:YES];
 		}
 			
@@ -361,7 +362,18 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
 	JRBrowerController *browerVC = [JRBrowerController browerController:self.album.assetList currentIndex:indexPath.row];
+	browerVC.delegate = self;
 	[self.navigationController pushViewController:browerVC animated:YES];
+}
+
+- (void)selectAsset:(JRAsset *)asset isSelected:(BOOL)selected {
+	
+	NSInteger index = [self.album.assetList indexOfObject:asset];
+	
+	if (index != NSNotFound) {
+		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+		[self selectAsset:indexPath asset:asset isSelected:selected];
+	}
 }
 
 #pragma mark - JRImageCellDelegate
