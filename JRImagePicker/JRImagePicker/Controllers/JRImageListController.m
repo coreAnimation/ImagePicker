@@ -99,8 +99,9 @@
 
 ///
 - (void)dealloc {
-	///
+	/// 情况选择
 	[[JRAlbumManager sharedAlbumManager].selectedItem removeAllObjects];
+	[JRAlbumManager sharedAlbumManager].isOriginal = NO;
 }
 
 @end

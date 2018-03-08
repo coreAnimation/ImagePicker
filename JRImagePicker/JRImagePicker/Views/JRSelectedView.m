@@ -16,8 +16,6 @@
 @property (nonatomic, strong) UIButton	*throughBtn;
 /// 编辑
 @property (nonatomic, strong) UIButton	*editBtn;
-/// 原图
-@property (nonatomic, strong) UIButton	*originalBtn;
 /// 完成
 @property (nonatomic, strong) UIButton	*accomplishBtn;
 
@@ -54,11 +52,15 @@
 	[self addSubview:self.editBtn];
 	self.editBtn.tag = 2;
 	[self.editBtn addTarget:self action:@selector(throughAction:) forControlEvents:UIControlEventTouchUpInside];
+	self.editBtn.hidden = YES;
 	
 	/// 原图
-	self.originalBtn = [[UIButton alloc] initWithFrame:CGRectMake((Screen_w - 50) * 0.5, 0, 50, Sele_Bar_h)];
+	self.originalBtn = [[UIButton alloc] initWithFrame:CGRectMake((Screen_w - 50) * 0.5, 0, 120, Sele_Bar_h)];
 	[self.originalBtn setTitle:@"原图" forState:UIControlStateNormal];
+	[self.originalBtn setImage:[UIImage imageNamed:@"originaled"] forState:UIControlStateSelected];
+	[self.originalBtn setImage:[UIImage imageNamed:@"original"] forState:UIControlStateNormal];
 	self.originalBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+	self.originalBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 	[self addSubview:self.originalBtn];
 	self.originalBtn.tag = 3;
 	[self.originalBtn addTarget:self action:@selector(throughAction:) forControlEvents:UIControlEventTouchUpInside];

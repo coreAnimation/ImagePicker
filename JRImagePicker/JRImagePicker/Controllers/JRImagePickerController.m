@@ -17,6 +17,7 @@
 #import "JRCollectionView.h"
 #import "JRSelectedView.h"
 #import "JRBrowerController.h"
+#import "PHImageManager+JRExtension.h"
 
 @interface JRImagePickerController () <UICollectionViewDataSource, UICollectionViewDelegate,
 										JRImageCellDelegate, JRSelectedViewDelegate, JRBrowerControllerDelegate>
@@ -80,6 +81,7 @@
 	self.bottomBar = [JRSelectedView selectedView];
 	self.bottomBar.delegate = self;
 	[self.view addSubview:self.bottomBar];
+	[self.bottomBar setSelectedNumber];
 	
 	/// 滑动手势
 	UIPanGestureRecognizer *tap = [[UIPanGestureRecognizer alloc] initWithTarget:self
@@ -307,8 +309,11 @@
 		case 2:
 			NSLog(@"-----2");
 			break;
-		case 3:
-			NSLog(@"-----3");
+		case 3: {
+			sender.selected = !sender.selected;
+			[JRAlbumManager sharedAlbumManager].isOriginal = sender.selected;
+			[self imageOriginalDisplay];
+		}
 			break;
 			/// 完成
 		case 4: {
@@ -324,6 +329,22 @@
 			break;
 	}
 }
+
+/// 选择图片 更新原图大小显示信息
+- (void)imageOriginalDisplay {
+	if ([JRAlbumManager sharedAlbumManager].isOriginal) {
+		[PHImageManager jr_getSelectedBytesCompletion:^(NSString *totalBytes) {
+			NSString *title = [NSString stringWithFormat:@"原图(%@)", totalBytes];
+			if (totalBytes.length == 0) {
+				title = @"原图";
+			}
+			[self.bottomBar.originalBtn setTitle:title forState:UIControlStateNormal];
+		}];
+	} else {
+		[self.bottomBar.originalBtn setTitle:@"原图" forState:UIControlStateNormal];
+	}
+}
+
 
 #pragma makr -
 
@@ -409,6 +430,8 @@
 	/// 设置底部选择条数量
 	[self.bottomBar setSelectedNumber];
 
+	/// 更新图片大小显示信息
+	[self imageOriginalDisplay];
 }
 
 /// 设置选择的相册

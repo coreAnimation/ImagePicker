@@ -21,6 +21,9 @@
 
 @interface JRSelectedView : UIView
 
+/// 原图
+@property (nonatomic, strong) UIButton	*originalBtn;
+
 /// 代理对象
 @property (nonatomic, weak) id<JRSelectedViewDelegate> delegate;
 

@@ -29,7 +29,10 @@
  */
 @property (nonatomic, strong) NSMutableArray<JRAsset *>	*selectedItem;
 
-//@property (nonatomic, strong) NSMutableArray<NSIndexPath *> *selectedIndexPaths;
+/**
+ 是否选择原始图片
+ */
+@property (nonatomic, assign) BOOL		isOriginal;
 
 /**
  获取相册资源

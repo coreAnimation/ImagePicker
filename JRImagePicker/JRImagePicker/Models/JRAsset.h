@@ -9,6 +9,16 @@
 #import <Photos/Photos.h>
 
 @class PHAsset;
+
+typedef enum : NSUInteger {
+	JRAssetTypePhoto,
+	JRAssetTypeLivePhoto,
+	JRAssetTypeGif,
+	JRAssetTypeVideo,
+	JRAssetTypeAudio,
+} JRAssetType;
+
+
 @interface JRAsset : PHAsset
 
 /**
@@ -35,6 +45,11 @@
  原始数据
  */
 @property (nonatomic, strong) NSData	*sourceData;
+
+/**
+ 资源类型
+ */
+@property (nonatomic, assign) JRAssetType	type;
 
 
 /// 获取缩略图
