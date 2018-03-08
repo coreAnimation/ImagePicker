@@ -208,7 +208,12 @@
 /// 选择操作
 - (void)selectAction:(NSIndexPath *)tmpIndexPath {
 	
-	/// 为发生选择
+//	if ([JRAlbumManager sharedAlbumManager].selectedItem.count >= 9) {
+//		NSLog(@"==============================MAX");
+//		return;
+//	}
+	
+	/// 未发生选择
 	if ([self.endIndexPath isEqual:tmpIndexPath] || !tmpIndexPath) {
 		return;
 	}

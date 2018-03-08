@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRAlbum;
 @interface JRImageListCell : UITableViewCell
+
+///
+@property (nonatomic, strong) JRAlbum	*album;
 
 @end

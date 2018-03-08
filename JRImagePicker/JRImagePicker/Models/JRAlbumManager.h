@@ -35,6 +35,11 @@
 @property (nonatomic, assign) BOOL		isOriginal;
 
 /**
+ 最大选择个数
+ */
+@property (nonatomic, assign) NSInteger		maxSelectedCount;
+
+/**
  获取相册资源
  */
 - (void)fetchAlbumResource;

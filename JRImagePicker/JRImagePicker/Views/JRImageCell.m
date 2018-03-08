@@ -59,6 +59,11 @@
 /// 选中按钮事件
 - (void)selectAction:(UIButton *)sender {
 	
+//	if ([JRAlbumManager sharedAlbumManager].selectedItem.count >= 9) {
+//		NSLog(@"==============================MAX");
+//		return;
+//	}
+	
 	/// 设置选中状态
 	self.isSelected = !self.isSelected;
 	

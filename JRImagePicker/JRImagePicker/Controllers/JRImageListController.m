@@ -11,6 +11,7 @@
 #import <Photos/Photos.h>
 #import "JRAlbumManager.h"
 #import "JRAlbum.h"
+#import "JRImageListCell.h"
 
 @interface JRImageListController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -40,7 +41,7 @@
 	self.tableView.delegate 	= self;
 	self.tableView.dataSource 	= self;
 	self.tableView.rowHeight  	= 50;
-	[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+	[self.tableView registerClass:[JRImageListCell class] forCellReuseIdentifier:@"cell"];
 	[self.view addSubview: self.tableView];
 	
 	
@@ -71,11 +72,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+	JRImageListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 	
 	JRAlbum *model = self.dataList[indexPath.row];
-	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %zd", model.name, model.count];
-	cell.imageView.image = model.image;
+	cell.album = model;
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//	cell.textLabel.text = [NSString stringWithFormat:@"%@ - %zd", model.name, model.count];
+//	cell.imageView.image = model.image;
 	
 	return cell;
 }
