@@ -54,6 +54,12 @@
 	[self setupView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	[self.collectionView reloadData];
+}
+
 /// 初始化界面
 - (void)setupView {
 

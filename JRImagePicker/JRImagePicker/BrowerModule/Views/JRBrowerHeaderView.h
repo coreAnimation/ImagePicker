@@ -28,6 +28,10 @@
 
 @property (nonatomic, strong) JRAsset	*asset;
 
+@property (nonatomic, assign) NSInteger	index;
+
+@property (nonatomic, assign) BOOL		isSelected;
+
 @property (nonatomic, strong) JRSelectedButton	*selectedBtn;
 
 @property (nonatomic, weak) id<JRBrowerHeaderViewDelegate>	delegate;

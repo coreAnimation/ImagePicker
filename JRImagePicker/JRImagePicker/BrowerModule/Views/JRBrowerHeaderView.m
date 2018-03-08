@@ -54,9 +54,9 @@
 	//
 	self.asset.isSelected = sender.selected;
 	
-//	if ([self.delegate respondsToSelector:@selector(selectedAsset:selected:)]) {
-//		[self.delegate selectedAsset:self.asset selected:self.selectedBtn.selected];
-//	}
+	if ([self.delegate respondsToSelector:@selector(selectedAsset:selected:)]) {
+		[self.delegate selectedAsset:self.asset selected:self.selectedBtn.selected];
+	}
 }
 
 - (void)setAppearance:(BOOL)appearance {
@@ -78,12 +78,23 @@
 - (void)setAsset:(JRAsset *)asset {
 	_asset = asset;
 	
-	self.selectedBtn.selected = asset.isSelected;
+//	self.selectedBtn.selected = asset.isSelected;
 
-	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
-	if (index != NSNotFound) {
-		self.selectedBtn.number = index + 1;
-	}
+//	NSInteger index = [[JRAlbumManager sharedAlbumManager].selectedItem indexOfObject:asset];
+//	if (index != NSNotFound) {
+//		self.selectedBtn.number = index + 1;
+//	}
+}
+
+- (void)setIsSelected:(BOOL)isSelected {
+	_isSelected = isSelected;
+	
+	self.selectedBtn.selected = isSelected;
+}
+
+- (void)setIndex:(NSInteger)index {
+	_index = index;
+	self.selectedBtn.number = index + 1;
 }
 
 @end

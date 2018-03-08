@@ -12,6 +12,7 @@
 #import "Header.h"
 #import "JRBrowerBottomView.h"
 #import "JRBrowerHeaderView.h"
+#import "JRAlbumManager.h"
 
 @interface JRBrowerController () <UICollectionViewDataSource, UICollectionViewDelegate,
 								JRBrowerHeaderViewDelegate>
@@ -29,6 +30,8 @@
 
 @property (nonatomic, strong) JRBrowerHeaderView		*headerView;
 
+@property (nonatomic, strong) NSMutableArray<JRAsset *>	*backList;
+
 @end
 
 @implementation JRBrowerController
@@ -38,6 +41,7 @@
 	JRBrowerController *browerVC = [JRBrowerController new];
 	
 	browerVC.assetList = assetList;
+	browerVC.backList = [[JRAlbumManager sharedAlbumManager].selectedItem mutableCopy];
 	browerVC.index = index;
 	
 	[browerVC setupView];
@@ -60,6 +64,8 @@
 	[super viewWillDisappear:animated];
 	
 	[self.navigationController setNavigationBarHidden:NO animated:YES];
+	
+	[JRAlbumManager sharedAlbumManager].selectedItem = [self.backList mutableCopy];
 }
 
 - (void)backAction {
@@ -100,12 +106,31 @@
 	[self.collectionView addGestureRecognizer:tap];
 }
 
-///
+/// 选择处理
 - (void)selectedAsset:(JRAsset *)asset selected:(BOOL)isSelected {
-	if ([self.delegate respondsToSelector:@selector(selectAsset:isSelected:)]) {
-		[self.delegate selectAsset:asset isSelected:isSelected];
+
+	
+	NSLog(@"------  %zd", isSelected);
+	/// 选中
+	if (isSelected) {
+		/// 添加
+		if (![self.backList containsObject:asset]) {
+			[self.backList addObject:asset];
+		}
+	}
+
+	/// 删除
+	else {
+		if ([self.backList containsObject:asset]) {
+			[self.backList removeObject:asset];
+		}
 	}
 	
+	///
+	[self scrollViewDidScroll:self.collectionView];
+//	if ([self.delegate respondsToSelector:@selector(selectAsset:isSelected:)]) {
+//		[self.delegate selectAsset:asset isSelected:isSelected];
+//	}
 }
 
 - (void)tapAct {
@@ -134,6 +159,13 @@
 	
 	JRAsset *asset = self.assetList[indexPath.row];
 	self.headerView.asset = asset;
+	if ([self.backList containsObject:asset]) {
+		NSInteger index = [self.backList indexOfObject:asset];
+		self.headerView.isSelected = YES;
+		self.headerView.index = index;
+	} else {
+		self.headerView.isSelected = NO;
+	}
 }
 
 - (UICollectionViewFlowLayout *)flowLayout {
