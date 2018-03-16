@@ -54,7 +54,7 @@
 	self.selectedBtn = ({
 		CGRect frame = CGRectMake(Screen_w - 80, 0, 49, 49);
 		UIButton *sel = [[UIButton alloc] initWithFrame:frame];
-		[sel setImage:[UIImage imageNamed:@"original"] forState:UIControlStateNormal];
+//		[sel setImage:[UIImage imageNamed:@"original"] forState:UIControlStateNormal];
 		[sel setImage:[UIImage imageNamed:@"originaled"] forState:UIControlStateSelected];
 		[self.contentView addSubview:sel];
 		sel;
